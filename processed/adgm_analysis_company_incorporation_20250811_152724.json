@@ -1,0 +1,250 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 5,
+    "required_documents": 16,
+    "processing_time_seconds": 31.313753,
+    "analysis_timestamp": "2025-08-11T15:27:24.868877"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Audited Annual Accounts",
+      "Shareholder Resolution (for Incorporation)",
+      "Board Resolution approving accounts",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Articles of Association (AoA)",
+      "Incorporation Application Form",
+      "Source of Wealth Declaration",
+      "Director's Report",
+      "Change of Registered Address Notice",
+      "Identification documents for Authorised Signatories and Directors",
+      "Memorandum of Association (MoA/MoU)",
+      "Hub71 Approval Letter (if applicable)",
+      "Auditors Report",
+      "Register of Members and Directors",
+      "Lease Agreement or Office Space Registration"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [
+      "Standard Employment Contract (2024 update)"
+    ],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Articles of Association (AoA)",
+        "Incorporation Application Form",
+        "Memorandum of Association (MoA/MoU)"
+      ],
+      "Important": [
+        "Shareholder Resolution (for Incorporation)",
+        "Board Resolution approving accounts",
+        "Identification documents for Authorised Signatories and Directors",
+        "Register of Members and Directors",
+        "Lease Agreement or Office Space Registration"
+      ],
+      "Optional": [
+        "Audited Annual Accounts",
+        "Source of Wealth Declaration",
+        "Director's Report",
+        "Change of Registered Address Notice",
+        "Hub71 Approval Letter (if applicable)",
+        "Auditors Report"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 11,
+    "average_compliance_score": 57.0,
+    "issues_by_severity": {
+      "high": 1,
+      "medium": 8,
+      "low": 2
+    },
+    "issues_by_category": {
+      "formatting": 5,
+      "compliance": 1,
+      "jurisdiction": 2,
+      "ambiguity": 3
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "2.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "25.0%",
+      "Total Issues": 4,
+      "High Priority": 1,
+      "Status": "❌ Issues Found"
+    },
+    {
+      "Document": "3.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "50.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "4.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "80.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "5.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "80.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "```json\n[\n  {\n    \"red_flag\": \"The resolution mentions incorporation in the 'Abu Dhabi Global Market' and refers to 'applicable regulations and sub-ordinate rules of Abu Dhabi Global Market'. While this indicates ADGM jurisdiction, it should explicitly state that the company is being incorporated under the ADGM Companies Regulations 2020.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 1\",\n    \"suggestion\": \"The resolution should explicitly state that the company is being incorporated under the ADGM Companies Regulations 2020.\",\n    \"severity\": \"Medium\",\n    \"category\": \"jurisdiction\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"We, the undersigned, being the incorporating shareholders, resolve to incorporate a public company limited by shares in the Abu Dhabi Global Market under the name of [insert proposed company name] (or any other name approved by ADGM Registration Authority), in accordance with the ADGM Companies Regulations 2020 and other applicable regulations and sub-ordinate rules of Abu Dhabi Global Market (the “Company”).\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Appointment of Authorised Signatory(ies) Appointment of Director(s) Appointment of Secretary(ies)'. This is vague. It should specify the names of the individuals being appointed to these roles.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 26\",\n    \"suggestion\": \"The resolution should explicitly state the names of the individuals being appointed as Authorised Signatories, Directors, and Secretaries.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED, to appoint the officers of the company upon incorporation as follows: Appointment of Authorised Signatory(ies): [Insert Name(s)], Appointment of Director(s): [Insert Name(s)], Appointment of Secretary(ies): [Insert Name(s)].\"\n  },\n  {\n    \"red_flag\": \"The resolution mentions 'Adoption of Articles'. It should explicitly state that the Articles of Association are being adopted for the purpose of incorporation of the Company in the Abu Dhabi Global Market and that the Articles comply with ADGM regulations.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 16\",\n    \"suggestion\": \"The resolution should explicitly state that the Articles of Association are being adopted for the purpose of incorporation of the Company in the Abu Dhabi Global Market and that the Articles comply with ADGM regulations.\",\n    \"severity\": \"Medium\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the Company adopts the Articles of Association, which comply with the ADGM Companies Regulations 2020, for the purpose of incorporation of the Company in the Abu Dhabi Global Market.\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Authorised Share Capital IT WAS RESOLVED that the amount of the authorised share capital of the company shall be as follows: [xxxx] USD'. It should specify the exact amount of the authorized share capital.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 17\",\n    \"suggestion\": \"Replace '[xxxx] USD' with the specific amount of the authorized share capital.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"Authorised Share Capital IT WAS RESOLVED that the amount of the authorised share capital of the company shall be as follows: [Insert Amount] USD.\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Share Capital IT WAS RESOLVED that the proposed issued share capital of the company shall be as follows'. It should specify the exact amount of the issued share capital.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 17\",\n    \"suggestion\": \"The resolution should specify the exact amount of the issued share capital.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"Share Capital IT WAS RESOLVED that the proposed issued share capital of the company shall be as follows: [Insert Amount] USD.\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Shareholders The issued share capital shall be structured as follows'. This is incomplete. It needs to specify the names of the shareholders and the number of shares allocated to each.\",\n    \"law_citation\": \"AD",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    },
+    {
+      "red_flag": "Missing required sections: directors present, quorum, signatures",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Document may be missing explicit ADGM jurisdiction clause",
+      "law_citation": "ADGM Companies Regulations 2020, Article 6 - Jurisdiction",
+      "suggestion": "Add clause: 'This document shall be governed by ADGM law and subject to ADGM Courts jurisdiction'",
+      "severity": "Medium",
+      "category": "jurisdiction",
+      "confidence": "Medium"
+    },
+    {
+      "red_flag": "The resolution states the company is organized and existing under the laws of 'Abu Dhabi Global Market'. While technically correct, it lacks explicit reference to ADGM Courts jurisdiction in the Articles of Association, which is a requirement for incorporation.",
+      "law_citation": "ADGM Company Incorporation Checklist (Private Company Limited), Articles of Association requirement; ADGM Companies Regulations 2020, Article 17 (Constitutional Documents)",
+      "suggestion": "The Articles of Association annexed to the resolution must explicitly state that ADGM Courts have jurisdiction over any disputes arising from the company's operations. The resolution itself should also include a statement confirming this.",
+      "severity": "High",
+      "category": "jurisdiction",
+      "confidence": "High",
+      "compliant_clause": "RESOLVED FURTHER, that the Articles of Association annexed to this resolution explicitly state that the ADGM Courts have exclusive jurisdiction over any disputes arising out of or in connection with the Company."
+    },
+    {
+      "red_flag": "The contract disclaimer states that it should not be considered a substitute for legal advice. While this is generally sound advice, it could be interpreted as weakening the binding nature of the contract itself. The disclaimer should be carefully worded to avoid any implication that the contract is not legally enforceable.",
+      "law_citation": "N/A",
+      "suggestion": "Rephrase the disclaimer to emphasize that the contract is legally binding but that seeking independent legal advice is recommended for specific situations. For example: \"This Employment Contract is a legally binding agreement setting out the terms of employment within the Abu Dhabi Global Market. While this contract complies with ADGM Employment Regulations, it is recommended that both the Employer and Employee seek independent legal advice to ensure it meets their specific needs and circumstances.\"",
+      "severity": "Medium",
+      "category": "ambiguity",
+      "confidence": "High",
+      "compliant_clause": "This Employment Contract is a legally binding agreement setting out the terms of employment within the Abu Dhabi Global Market. While this contract complies with ADGM Employment Regulations, it is recommended that both the Employer and Employee seek independent legal advice to ensure it meets their specific needs and circumstances."
+    },
+    {
+      "red_flag": "The disclaimer states that the contract sets out the *minimum* employment standards applicable in ADGM pursuant to ADGM Employment Regulations of 2024, which is accurate, but it also states that these regulations 'may be amended from time to time without notification'. While true, this could be perceived as ambiguous and potentially misleading. It's better to encourage employers to stay updated.",
+      "law_citation": "ADGM Standard Employment Contract Template (2024)",
+      "suggestion": "Rephrase the disclaimer to encourage employers to regularly review the ADGM Employment Regulations for updates. For example: 'This Employment Contract sets out the minimum employment standards applicable in ADGM pursuant to ADGM Employment Regulations of 2024. Employers are responsible for staying informed of any amendments to these regulations.'",
+      "severity": "Low",
+      "category": "ambiguity",
+      "confidence": "High",
+      "compliant_clause": null
+    },
+    {
+      "red_flag": "The disclaimer states that the contract only sets out the *minimum* employment standards applicable in ADGM. While technically correct, it could be interpreted as suggesting the contract itself is not fully compliant, which is misleading. It should be clarified that the contract is designed to be compliant when properly completed.",
+      "law_citation": "ADGM Standard Employment Contract Template (2024)",
+      "suggestion": "Reword the disclaimer to emphasize that the contract is designed to be compliant with ADGM Employment Regulations when properly completed, and that employers can offer more favorable terms.",
+      "severity": "Low",
+      "category": "ambiguity",
+      "confidence": "Medium",
+      "compliant_clause": "This Employment Contract is designed to comply with the ADGM Employment Regulations of 2024 (which may be amended from time to time without notification) when properly completed. The Employer may provide terms and conditions of employment that are more favourable to the Employee than those required by the ADGM Employment Regulations of 2024."
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [
+    {
+      "process": "Employment",
+      "relevance": 0.06666666666666667,
+      "overlapping_docs": 1,
+      "confidence": 0.5
+    }
+  ],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing",
+    "Single employment document detected - consider adding Employee Handbook or Employment Policy"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

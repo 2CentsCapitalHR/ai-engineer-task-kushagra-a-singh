@@ -1,0 +1,143 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 1,
+    "required_documents": 16,
+    "processing_time_seconds": 6.004241,
+    "analysis_timestamp": "2025-08-10T12:16:11.951692"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Change of Registered Address Notice",
+      "Lease Agreement or Office Space Registration",
+      "Hub71 Approval Letter (if applicable)",
+      "Identification documents for Authorised Signatories and Directors",
+      "Auditors Report",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Director's Report",
+      "Source of Wealth Declaration",
+      "Board Resolution approving accounts",
+      "Incorporation Application Form",
+      "Shareholder Resolution (for Incorporation)",
+      "Register of Members and Directors",
+      "Audited Annual Accounts",
+      "Articles of Association (AoA)",
+      "Memorandum of Association (MoA/MoU)"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Incorporation Application Form",
+        "Articles of Association (AoA)",
+        "Memorandum of Association (MoA/MoU)"
+      ],
+      "Important": [
+        "Lease Agreement or Office Space Registration",
+        "Identification documents for Authorised Signatories and Directors",
+        "Board Resolution approving accounts",
+        "Shareholder Resolution (for Incorporation)",
+        "Register of Members and Directors"
+      ],
+      "Optional": [
+        "Change of Registered Address Notice",
+        "Hub71 Approval Letter (if applicable)",
+        "Auditors Report",
+        "Director's Report",
+        "Source of Wealth Declaration",
+        "Audited Annual Accounts"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 4,
+    "average_compliance_score": 50.0,
+    "issues_by_severity": {
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "issues_by_category": {
+      "formatting": 3,
+      "parsing": 1
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Parsing error: list indices must be integers or slices, not str",
+      "law_citation": "ADGM Legal Framework - General Requirements",
+      "suggestion": "Check input format and retry",
+      "severity": "Medium",
+      "category": "parsing",
+      "confidence": "Medium",
+      "compliant_clause": "Retry analysis with corrected input",
+      "error_type": "parsing_error",
+      "recoverable": true
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Insufficient documents: 1 provided, minimum 4 required",
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

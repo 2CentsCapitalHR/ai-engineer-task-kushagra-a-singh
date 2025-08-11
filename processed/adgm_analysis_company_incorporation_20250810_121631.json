@@ -1,0 +1,141 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 1,
+    "required_documents": 16,
+    "processing_time_seconds": 6.521957,
+    "analysis_timestamp": "2025-08-10T12:16:31.919625"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Change of Registered Address Notice",
+      "Lease Agreement or Office Space Registration",
+      "Hub71 Approval Letter (if applicable)",
+      "Identification documents for Authorised Signatories and Directors",
+      "Auditors Report",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Director's Report",
+      "Source of Wealth Declaration",
+      "Board Resolution approving accounts",
+      "Incorporation Application Form",
+      "Shareholder Resolution (for Incorporation)",
+      "Register of Members and Directors",
+      "Audited Annual Accounts",
+      "Articles of Association (AoA)",
+      "Memorandum of Association (MoA/MoU)"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Incorporation Application Form",
+        "Articles of Association (AoA)",
+        "Memorandum of Association (MoA/MoU)"
+      ],
+      "Important": [
+        "Lease Agreement or Office Space Registration",
+        "Identification documents for Authorised Signatories and Directors",
+        "Board Resolution approving accounts",
+        "Shareholder Resolution (for Incorporation)",
+        "Register of Members and Directors"
+      ],
+      "Optional": [
+        "Change of Registered Address Notice",
+        "Hub71 Approval Letter (if applicable)",
+        "Auditors Report",
+        "Director's Report",
+        "Source of Wealth Declaration",
+        "Audited Annual Accounts"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 4,
+    "average_compliance_score": 50.0,
+    "issues_by_severity": {
+      "high": 0,
+      "medium": 4,
+      "low": 0
+    },
+    "issues_by_category": {
+      "formatting": 3,
+      "compliance": 1
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "```json\n[\n  {\n    \"red_flag\": \"The resolution mentions incorporation in the 'Abu Dhabi Global Market' but doesn't explicitly state that the company is governed by ADGM laws and regulations. This is crucial for jurisdictional compliance.\",\n    \"law_citation\": \"ADGM Registration and Incorporation\",\n    \"suggestion\": \"Add a clause explicitly stating that the company is incorporated and governed by the laws and regulations of the Abu Dhabi Global Market.\",\n    \"severity\": \"High\",\n    \"category\": \"jurisdiction\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the company be incorporated in the Abu Dhabi Global Market and shall be governed by the laws and regulations of the Abu Dhabi Global Market.\"\n  },\n  {\n    \"red_flag\": \"The resolution mentions 'applicable regulations and sub-ordinate rules of Abu Dhabi Global Market' which is vague. It should specifically reference the ADGM Companies Regulations 2020.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020\",\n    \"suggestion\": \"Replace the vague reference with a specific reference to the ADGM Companies Regulations 2020.\",\n    \"severity\": \"Medium\",\n    \"category\": \"compliance\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"in accordance with the ADGM Companies Regulations 2020 and other applicable regulations of the Abu Dhabi Global Market (the “Company”).\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Appointment of Authorised Signatory(ies) Appointment of Director(s) Appointment of Secretary(ies)' without specifying the names of the individuals being appointed. This is insufficient for a formal board resolution.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 26\",\n    \"suggestion\": \"The resolution must include the full names of the individuals being appointed as Authorised Signatories, Directors, and Secretaries.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED, to appoint the officers of the company upon incorporation as follows: Authorised Signatory(ies): [Insert Full Name(s)]; Director(s): [Insert Full Name(s)]; Secretary(ies): [Insert Full Name(s)].\"\n  },\n  {\n    \"red_flag\": \"The resolution mentions 'Adoption of Articles' but doesn't explicitly state that the Articles of Association comply with ADGM regulations and specify ADGM jurisdiction.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 16\",\n    \"suggestion\": \"Add a clause confirming that the Articles of Association comply with ADGM regulations and specify ADGM jurisdiction.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the Company adopts the Articles of Association, which comply with the ADGM Companies Regulations 2020 and specify ADGM jurisdiction, for the purpose of incorporation of the Company in the Abu Dhabi Global Market.\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'IT WAS RESOLVED that the amount of the authorised share capital of the company shall be as follows: [xxxx] USD'. The amount should be clearly specified and not left as '[xxxx]'.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 17\",\n    \"suggestion\": \"Replace '[xxxx]' with the specific amount of the authorized share capital in USD.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the amount of the authorised share capital of the company shall be as follows: [Insert specific amount] USD.\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'Shareholders The issued share capital shall be structured as follows.' without providing details of the shareholders and their respective shareholdings. This information is essential.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Article 17\",\n    \"suggestion\": \"Include a table or list detailing the shareholders, the number of shares allocated to each, and the nominal value of each share.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"Shareholders: The issued share capital shall be structured as follows: [Insert table with shareholder names, number of shares, and nominal value per share].\"",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Insufficient documents: 1 provided, minimum 4 required",
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

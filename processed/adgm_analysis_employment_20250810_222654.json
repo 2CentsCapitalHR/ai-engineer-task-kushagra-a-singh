@@ -1,0 +1,112 @@
+{
+  "analysis_metadata": {
+    "process": "Employment",
+    "process_confidence": 0.5,
+    "documents_uploaded": 1,
+    "required_documents": 15,
+    "processing_time_seconds": 5.722701,
+    "analysis_timestamp": "2025-08-10T22:26:54.641607"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Employee Handbook",
+      "NOC for Employee Transfer (if applicable)",
+      "Offer Letter Template",
+      "Code of Conduct",
+      "Equal Opportunities Policy",
+      "Leave Policy",
+      "Data Protection Policy for Employees",
+      "Health and Safety Policy",
+      "Employment Policy",
+      "Standard Employment Contract (2019 short version)",
+      "Disciplinary Policy",
+      "Grievance Policy",
+      "Confidentiality Agreement",
+      "Non-Compete Agreement (if applicable)"
+    ],
+    "present_documents": [
+      "Standard Employment Contract (2024 update)"
+    ],
+    "extra_documents": [],
+    "completeness_percentage": 6.666666666666667,
+    "weighted_completeness": 11.11111111111111,
+    "missing_by_priority": {
+      "Critical": [
+        "Employee Handbook"
+      ],
+      "Important": [
+        "Offer Letter Template",
+        "Code of Conduct",
+        "Leave Policy",
+        "Data Protection Policy for Employees",
+        "Health and Safety Policy",
+        "Employment Policy",
+        "Disciplinary Policy",
+        "Grievance Policy"
+      ],
+      "Optional": [
+        "NOC for Employee Transfer (if applicable)",
+        "Equal Opportunities Policy",
+        "Standard Employment Contract (2019 short version)",
+        "Confidentiality Agreement",
+        "Non-Compete Agreement (if applicable)"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 1,
+    "average_compliance_score": 50.0,
+    "issues_by_severity": {
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "issues_by_category": {
+      "parsing": 1
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "4.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Critical",
+      "Compliance Score": "50.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Parsing error: list indices must be integers or slices, not str",
+      "law_citation": "ADGM Legal Framework - General Requirements",
+      "suggestion": "Check input format and retry",
+      "severity": "Medium",
+      "category": "parsing",
+      "confidence": "Medium",
+      "compliant_clause": "Retry analysis with corrected input",
+      "error_type": "parsing_error",
+      "recoverable": true
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [],
+  "combination_issues": [
+    "Single employment document detected - consider adding Employee Handbook or Employment Policy"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Insufficient documents: 1 provided, minimum 2 required"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

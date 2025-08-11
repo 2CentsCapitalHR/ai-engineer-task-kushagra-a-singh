@@ -1,0 +1,250 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 5,
+    "required_documents": 16,
+    "processing_time_seconds": 25.414578,
+    "analysis_timestamp": "2025-08-11T10:25:15.387807"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Board Resolution approving accounts",
+      "Auditors Report",
+      "Memorandum of Association (MoA/MoU)",
+      "Identification documents for Authorised Signatories and Directors",
+      "Source of Wealth Declaration",
+      "Director's Report",
+      "Incorporation Application Form",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Register of Members and Directors",
+      "Change of Registered Address Notice",
+      "Hub71 Approval Letter (if applicable)",
+      "Shareholder Resolution (for Incorporation)",
+      "Audited Annual Accounts",
+      "Lease Agreement or Office Space Registration",
+      "Articles of Association (AoA)"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [
+      "Standard Employment Contract (2024 update)"
+    ],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Memorandum of Association (MoA/MoU)",
+        "Incorporation Application Form",
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Articles of Association (AoA)"
+      ],
+      "Important": [
+        "Board Resolution approving accounts",
+        "Identification documents for Authorised Signatories and Directors",
+        "Register of Members and Directors",
+        "Shareholder Resolution (for Incorporation)",
+        "Lease Agreement or Office Space Registration"
+      ],
+      "Optional": [
+        "Auditors Report",
+        "Source of Wealth Declaration",
+        "Director's Report",
+        "Change of Registered Address Notice",
+        "Hub71 Approval Letter (if applicable)",
+        "Audited Annual Accounts"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 11,
+    "average_compliance_score": 62.0,
+    "issues_by_severity": {
+      "high": 0,
+      "medium": 9,
+      "low": 2
+    },
+    "issues_by_category": {
+      "ambiguity": 3,
+      "formatting": 5,
+      "compliance": 1,
+      "jurisdiction": 2
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "4.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "80.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "2.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "3.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "80.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "5.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "50.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "The disclaimer states that the contract only sets out the *minimum* employment standards applicable in ADGM. While technically correct, it could be interpreted as suggesting the contract itself is not fully compliant, which is misleading. It should explicitly state it *is* compliant with minimum standards.",
+      "law_citation": "ADGM Standard Employment Contract Template (2024)",
+      "suggestion": "Reword the disclaimer to state: 'This Employment Contract is compliant with the minimum employment standards applicable in ADGM pursuant to ADGM Employment Regulations of 2024 (which may be amended from time to time without notification).'",
+      "severity": "Low",
+      "category": "ambiguity",
+      "confidence": "High",
+      "compliant_clause": "This Employment Contract is compliant with the minimum employment standards applicable in ADGM pursuant to ADGM Employment Regulations of 2024 (which may be amended from time to time without notification)."
+    },
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "```json\n[\n  {\n    \"red_flag\": \"The resolution mentions incorporation in the 'Abu Dhabi Global Market' and refers to 'applicable regulations and sub-ordinate rules of Abu Dhabi Global Market'. While this indicates ADGM jurisdiction, it doesn't explicitly state that the company is governed by ADGM Courts, which is a requirement.\",\n    \"law_citation\": \"ADGM Company Incorporation Checklist (Private Company Limited), which requires all documents to reference ADGM Courts jurisdiction.\",\n    \"suggestion\": \"Add a clause explicitly stating that the company is subject to the jurisdiction of the ADGM Courts.\",\n    \"severity\": \"Medium\",\n    \"category\": \"jurisdiction\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the Company shall be subject to the jurisdiction of the ADGM Courts.\"\n  },\n  {\n    \"red_flag\": \"The resolution mentions the adoption of Articles of Association but doesn't explicitly state that these Articles of Association comply with the ADGM Companies Regulations 2020.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Articles 16-25, which outline the requirements for constitutional documents.\",\n    \"suggestion\": \"Add a clause confirming that the Articles of Association comply with the ADGM Companies Regulations 2020.\",\n    \"severity\": \"Medium\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the Articles of Association adopted for the purpose of incorporation comply with the ADGM Companies Regulations 2020.\"\n  },\n  {\n    \"red_flag\": \"The resolution mentions the appointment of officers (Authorised Signatory(ies), Director(s), Secretary(ies)) but doesn't specify the full names and addresses of the individuals being appointed. This information is crucial for the Register of Directors and Members.\",\n    \"law_citation\": \"ADGM Company Incorporation Checklist (Private Company Limited), which requires a current and accurate Register of Members and Directors.\",\n    \"suggestion\": \"Include the full names, addresses, and other required details (e.g., passport copies) of the appointed officers in the resolution or as an appendix.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED, to appoint the following officers of the company upon incorporation: [Insert Full Name and Address of Authorised Signatory(ies)], [Insert Full Name and Address of Director(s)], [Insert Full Name and Address of Secretary(ies)].\"\n  },\n  {\n    \"red_flag\": \"The resolution states 'or any other name approved by ADGM Registration Authority'. While this is acceptable, it's better to have a primary name and a specific alternative name listed, rather than a general statement.\",\n    \"law_citation\": \"ADGM Setting Up Guide, which covers name reservation requirements.\",\n    \"suggestion\": \"Replace 'or any other name approved by ADGM Registration Authority' with a specific alternative name that has been reserved.\",\n    \"severity\": \"Low\",\n    \"category\": \"ambiguity\",\n    \"confidence\": \"Medium\",\n    \"compliant_clause\": \"in the Abu Dhabi Global Market under the name of [insert proposed company name] or [insert alternative company name] (or any other name approved by ADGM Registration Authority)\"\n  },\n  {\n    \"red_flag\": \"The resolution lacks a specific clause confirming the registered office address within ADGM. This is a mandatory requirement for incorporation.\",\n    \"law_citation\": \"ADGM Company Incorporation Checklist (Private Company Limited) and ADGM Setting Up Guide, both emphasizing the registered office requirement.\",\n    \"suggestion\": \"Add a clause specifying the registered office address within ADGM.\",\n    \"severity\": \"High\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"High\",\n    \"compliant_clause\": \"IT WAS RESOLVED that the registered office of the Company shall be located at [Insert Full Registered Office Address in ADGM].\"\n  },\n  {\n    \"red_flag\": \"The resolution doesn't explicitly state that the issued share capital will be allocated according to the ADGM Companies Regulations 2020.\",\n    \"law_citation\": \"ADGM Companies Regulations 2020, Articles 36-45, which cover shareholder rights and meetings related to share capital.\",\n    \"suggestion\": \"Add a clause confirming that the share capital allocation complies with the ADGM Companies Regulations 2020.\",\n    \"severity\": \"Medium\",\n    \"category\": \"missing_clauses\",\n    \"confidence\": \"Medium\",",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    },
+    {
+      "red_flag": "Missing required sections: directors present, quorum, signatures",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Document may be missing explicit ADGM jurisdiction clause",
+      "law_citation": "ADGM Companies Regulations 2020, Article 6 - Jurisdiction",
+      "suggestion": "Add clause: 'This document shall be governed by ADGM law and subject to ADGM Courts jurisdiction'",
+      "severity": "Medium",
+      "category": "jurisdiction",
+      "confidence": "Medium"
+    },
+    {
+      "red_flag": "The resolution states the company is organized and existing under the laws of 'Abu Dhabi Global Market'. While technically correct, it should explicitly state that the company is governed by ADGM Companies Regulations 2020 and that the Articles of Association specify ADGM as the governing jurisdiction.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 16; ADGM Registration and Incorporation",
+      "suggestion": "The resolution should explicitly state that the company is governed by ADGM Companies Regulations 2020 and that the Articles of Association specify ADGM as the governing jurisdiction. The Articles of Association must also specify ADGM Courts jurisdiction, not UAE Federal Courts.",
+      "severity": "Medium",
+      "category": "jurisdiction",
+      "confidence": "High",
+      "compliant_clause": "RESOLVED, that the draft articles of association annexed to this resolution be adopted as the articles of association of the Company in substitution for, and to the exclusion of, the Company’s existing articles of association, and that these Articles of Association specify ADGM as the governing jurisdiction and ADGM Courts as the jurisdiction for dispute resolution, in accordance with ADGM Companies Regulations 2020."
+    },
+    {
+      "red_flag": "The contract disclaimer states that it should not be considered a substitute for legal advice. While this is generally acceptable, it should not undermine the contract's enforceability under ADGM law.",
+      "law_citation": "N/A",
+      "suggestion": "Consider adding a clause stating that the contract is intended to be legally binding and enforceable under ADGM law, notwithstanding the disclaimer.",
+      "severity": "Low",
+      "category": "ambiguity",
+      "confidence": "Medium",
+      "compliant_clause": "Notwithstanding the disclaimer above, this Employment Contract is intended to be a legally binding agreement enforceable under the laws and regulations of the Abu Dhabi Global Market (ADGM)."
+    },
+    {
+      "red_flag": "The disclaimer states that the contract sets out the *minimum* employment standards applicable in ADGM pursuant to ADGM Employment Regulations of 2024, which is acceptable. However, it also states that the ADGM Employment Regulations of 2024 'may be amended from time to time without notification'. This is misleading and potentially non-binding. While regulations can be amended, the contract should not imply that the employee will not be notified of changes affecting their employment terms.",
+      "law_citation": "ADGM Standard Employment Contract Template (2024)",
+      "suggestion": "Remove the phrase 'which may be amended from time to time without notification'. The employer has a responsibility to inform the employee of any significant changes to their employment terms due to regulatory updates.",
+      "severity": "Medium",
+      "category": "ambiguity",
+      "confidence": "High",
+      "compliant_clause": null
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [
+    {
+      "process": "Employment",
+      "relevance": 0.06666666666666667,
+      "overlapping_docs": 1,
+      "confidence": 0.5
+    }
+  ],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing",
+    "Single employment document detected - consider adding Employee Handbook or Employment Policy"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

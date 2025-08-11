@@ -1,0 +1,280 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 5,
+    "required_documents": 16,
+    "processing_time_seconds": 122.590582,
+    "analysis_timestamp": "2025-08-09T20:21:56.337476"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Change of Registered Address Notice",
+      "Director's Report",
+      "Board Resolution approving accounts",
+      "Audited Annual Accounts",
+      "Memorandum of Association (MoA/MoU)",
+      "Articles of Association (AoA)",
+      "Lease Agreement or Office Space Registration",
+      "Shareholder Resolution (for Incorporation)",
+      "Hub71 Approval Letter (if applicable)",
+      "Auditors Report",
+      "Source of Wealth Declaration",
+      "Register of Members and Directors",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Incorporation Application Form",
+      "Identification documents for Authorised Signatories and Directors"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [
+      "Standard Employment Contract (2024 update)"
+    ],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Memorandum of Association (MoA/MoU)",
+        "Articles of Association (AoA)",
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Incorporation Application Form"
+      ],
+      "Important": [
+        "Board Resolution approving accounts",
+        "Lease Agreement or Office Space Registration",
+        "Shareholder Resolution (for Incorporation)",
+        "Register of Members and Directors",
+        "Identification documents for Authorised Signatories and Directors"
+      ],
+      "Optional": [
+        "Change of Registered Address Notice",
+        "Director's Report",
+        "Audited Annual Accounts",
+        "Hub71 Approval Letter (if applicable)",
+        "Auditors Report",
+        "Source of Wealth Declaration"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 13,
+    "average_compliance_score": 50.0,
+    "issues_by_severity": {
+      "high": 0,
+      "medium": 13,
+      "low": 0
+    },
+    "issues_by_category": {
+      "formatting": 5,
+      "compliance": 5,
+      "jurisdiction": 1,
+      "missing_clauses": 2
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "2.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "50.0%",
+      "Total Issues": 4,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "3.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "50.0%",
+      "Total Issues": 1,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "4.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "50.0%",
+      "Total Issues": 2,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    },
+    {
+      "Document": "5.docx",
+      "Type": "Standard Employment Contract (2024 update)",
+      "Priority": "Optional",
+      "Compliance Score": "50.0%",
+      "Total Issues": 2,
+      "High Priority": 0,
+      "Status": "⚠️ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "API error: string indices must be integers, not 'str'",
+      "law_citation": "ADGM Legal Framework - General Requirements",
+      "suggestion": "Check API configuration and retry",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Retry analysis or contact support",
+      "error_type": "unknown",
+      "recoverable": true
+    },
+    {
+      "red_flag": "Missing required sections: directors present, quorum, signatures",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Document may be missing explicit ADGM jurisdiction clause",
+      "law_citation": "ADGM Companies Regulations 2020, Article 6 - Jurisdiction",
+      "suggestion": "Add clause: 'This document shall be governed by ADGM law and subject to ADGM Courts jurisdiction'",
+      "severity": "Medium",
+      "category": "jurisdiction",
+      "confidence": "Medium"
+    },
+    {
+      "red_flag": "Okay, let's break down the ADGM compliance aspects of this Board Resolution for Incorporation, focusing on potential issues and best practices.  This analysis assumes the resolution is for the *initial* incorporation of the company, not a later amendment.\n\n**I. Key Areas of Compliance Concern:**\n\n*   **ADGM Companies Regulations 2020 (as amended):** This is the primary legislation governing companies in the ADGM.  The resolution must align with its requirements.\n*   **ADGM Commercial Licensing Regulations:**  Ensuring the proposed activities of the company are permissible under ADGM regulations and that the correct license is applied for.\n*   **ADGM Data Protection Regulations:**  If the company will be processing personal data, the Articles of Association and operational practices must comply with these regulations.\n*   **ADGM Financial Services Regulatory Authority (FSRA) Regulations (if applicable):** If the company intends to conduct regulated financial services activities, FSRA regulations are paramount. This resolution is unlikely to be sufficient on its own for FSRA compliance.\n*   **Economic Substance Regulations (ESR):**  The company must comply with ESR if it conducts any of the \"Relevant Activities\" as defined by the regulations.\n*   **Ultimate Beneficial Ownership (UBO) Regulations:** The company must identify and disclose its UBOs to the ADGM Registrar.\n\n**II. Analysis of the Resolution Clauses:**\n\n1.  **Preamble:**\n\n    *   **Compliance Check:**\n        *   **Company Name:**  Ensure the company name is approved by the ADGM Registrar and complies with naming conventions (e.g., ending with \"Limited\" or \"Ltd\" for a private company limited by shares).\n        *   **Company Type:**  \"Private company limited by shares\" or \"Restricted Scope Company\" must be accurate and consistent with the intended structure.  A Restricted Scope Company has specific limitations on its activities and shareholder base.\n        *   **Registration Number:**  This will be assigned *after* incorporation.  Leave it blank or indicate \"To be assigned.\"\n        *   **Registered Office Address:**  Must be a physical address within the ADGM.  A PO Box is not sufficient.\n    *   **Potential Issues:**\n        *   Incorrect company name or type.\n        *   Using a non-ADGM address.\n\n2.  **Amendments to the Articles of Association:**\n\n    *   **Compliance Check:**\n        *   **Articles of Association (AoA):**  The *draft* AoA is the most critical document. It *must* comply with the ADGM Companies Regulations 2020.  Key areas to review in the AoA:\n            *   **Share Capital:**  Authorized and issued share capital, classes of shares (if any), rights attached to each class.\n            *   **Shareholder Rights:**  Voting rights, dividend rights, transfer restrictions.\n            *   **Directors:**  Appointment, removal, powers, duties, quorum for meetings.\n            *   **Meetings:**  Shareholder and director meetings, notice requirements, voting procedures.\n            *   **Dividends:**  Dividend policy and distribution procedures.\n            *   **Transfer of Shares:**  Restrictions on transfer, pre-emption rights.\n            *   **Winding Up:**  Procedures for liquidation and distribution of assets.\n            *   **Indemnity:**  Indemnification of directors and officers (within legal limits).\n            *   **Conflict of Interest:**  Procedures for dealing with conflicts of interest.\n            *   **Data Protection:**  Clauses addressing compliance with ADGM Data Protection Regulations, especially if the company will be processing personal data.\n            *   **UBO Disclosure:**  Obligations of shareholders to disclose UBO information.\n        *   **Mandatory Provisions:**  Ensure the AoA includes all mandatory provisions required by the ADGM Companies Regulations.\n        *   **Consistency:**  Ensure the AoA is consistent with the company's intended business activities and structure.\n    *   **Potential Issues:**\n        *   AoA does not comply with mandatory provisions of the ADGM Companies Regulations.\n        *   AoA contains provisions that are inconsistent with ADGM law.\n        *   AoA is poorly drafted or ambiguous.\n        *   AoA does not adequately address data protection or UBO disclosure requirements.\n\n3.  **Authorization Clause:**\n\n    *   **Compliance Check:**\n        *   **Authorized Persons:**  The named individuals must be authorized to act on behalf of the company.  This typically means they are directors or have been granted power of attorney.\n        *   **Scope of Authority:**  The authorization should be broad enough to cover all necessary actions for incorporation, including:\n            *   Submitting documents to the ADGM Registrar.\n            *   Opening a bank account.\n            *",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    },
+    {
+      "red_flag": "Okay, I can help you analyze this draft Standard Employment Contract for ADGM compliance. I will focus on identifying potential issues and areas where the contract might fall short of the ADGM Employment Regulations of 2019.  I will also point out areas where the contract seems to be adhering to the regulations.\n\n**Important Considerations Before We Begin:**\n\n*   **This is not legal advice.** I am an AI and cannot provide legal advice. This analysis is for informational purposes only. You *must* consult with an ADGM-qualified legal professional for a comprehensive review and to ensure full compliance.\n*   **\"Standard\" Doesn't Guarantee Compliance:** Just because a contract is labeled \"standard\" doesn't mean it's automatically compliant.  Each clause needs to be carefully examined.\n*   **Dynamic Regulations:** ADGM Employment Regulations can change.  Ensure you are using the most up-to-date version of the regulations for your review.\n*   **Employer Responsibility:** The ultimate responsibility for compliance rests with the employer.\n\n**Analysis Framework:**\n\nI will analyze the contract based on the following key areas covered by the ADGM Employment Regulations of 2019:\n\n*   **Definitions and Interpretation:**  Are key terms clearly defined and consistent with the regulations?\n*   **Employment Term:**  Is the term of employment clearly stated?\n*   **Hours of Employment:**  Does the contract comply with regulations regarding working hours, breaks, and overtime?\n*   **Probationary Period:**  Is the probationary period compliant with the maximum duration allowed?\n*   **Place of Work:** Is the place of work clearly defined?\n*   **Job Title and Description:** Is the job title and description accurate and reflective of the employee's duties?\n*   **Remuneration:**  Is the salary clearly stated, and does it comply with minimum wage requirements (if applicable)?  Are payment methods and frequency specified?\n*   **Allowances and Benefits:** Are all allowances and benefits clearly defined?\n*   **Leave Entitlements:**  Does the contract comply with regulations regarding annual leave, sick leave, maternity/paternity leave, and other types of leave?\n*   **Confidentiality:** Is there a confidentiality clause?\n*   **Intellectual Property:** Is there an intellectual property clause?\n*   **Termination of Employment:**  Does the contract comply with regulations regarding termination notice periods, grounds for termination, and end-of-service benefits?\n*   **Governing Law and Dispute Resolution:**  Is ADGM law specified as the governing law, and is there a clear dispute resolution mechanism?\n*   **Data Protection:** Does the contract comply with ADGM Data Protection Regulations?\n\n**Detailed Analysis (Based on the Table of Contents):**\n\nLet's break down the analysis based on the sections you provided in the Table of Contents.  I will highlight potential issues and areas to scrutinize.\n\n**1. DEFINITIONS AND INTERPRETATION:**\n\n*   **Potential Issues:**\n    *   **Missing Definitions:**  Ensure all key terms used throughout the contract are clearly defined (e.g., \"Basic Salary,\" \"Gross Salary,\" \"Working Day,\" \"Confidential Information\").\n    *   **Inconsistent Definitions:**  Definitions must be consistent with the ADGM Employment Regulations.  For example, the definition of \"Basic Salary\" is crucial for calculating end-of-service benefits.\n*   **Compliance Considerations:**\n    *   Cross-reference definitions with the ADGM Employment Regulations to ensure accuracy.\n\n**2. EMPLOYMENT TERM:**\n\n*   **Potential Issues:**\n    *   **Lack of Clarity:** The contract should clearly state whether the employment is for a fixed term or an indefinite term.\n    *   **Fixed-Term Renewals:** If it's a fixed-term contract, the regulations may have implications for renewals.\n*   **Compliance Considerations:**\n    *   Clearly state the start date and, if applicable, the end date of the employment.\n\n**3. HOURS OF EMPLOYMENT:**\n\n*   **Potential Issues:**\n    *   **Overtime:**  The contract must address overtime pay or time off in lieu, in accordance with the ADGM Employment Regulations.  Specify the overtime rate (e.g., 1.5 times the basic hourly rate).\n    *   **Breaks:**  Ensure the contract complies with regulations regarding mandatory breaks during the workday.\n    *   **Maximum Working Hours:**  The contract must not violate the maximum working hours allowed under the regulations.\n    *   **On-Call Hours:** If applicable, address on-call hours and compensation.\n*   **Compliance Considerations:**\n    *   Explicitly state the normal working hours per day and per week.\n    *   Address overtime compensation or time off in lieu.\n    *   Comply with break requirements.\n\n**4. PROBATIONARY",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    },
+    {
+      "red_flag": "Document missing several common legal elements: RESOLVED, APPOINT, DIRECTOR",
+      "law_citation": "ADGM Companies Regulations 2020 - General Requirements",
+      "suggestion": "Review document against ADGM templates for completeness",
+      "severity": "Medium",
+      "category": "missing_clauses",
+      "confidence": "Low",
+      "compliant_clause": "Include all required legal elements as per ADGM regulations",
+      "section_index": 0,
+      "section_clause": "Document",
+      "section_text": "Disclaimer: This Employment Contract is not to be deemed, considered or relied upon as legal advice and should not be treated as a substitute for specific advice concerning individual employment situa...",
+      "section_type": "content",
+      "analysis_method": "graceful_degradation"
+    },
+    {
+      "red_flag": "Okay, I can help you analyze the provided text for ADGM compliance, focusing on the 2024 Employment Regulations.  I will break down the key areas and provide considerations for each.  Keep in mind that this analysis is based *solely* on the limited text you've provided and the general knowledge of ADGM Employment Regulations.  **This is NOT a substitute for legal advice from a qualified ADGM legal professional.**\n\n**Overall Impression and Key Considerations:**\n\n*   **Disclaimer is Good:** The disclaimer is crucial. It clearly states that the document is not legal advice and encourages seeking independent counsel.\n*   **Minimum Standards Focus:** The contract correctly identifies itself as setting out *minimum* standards. This is important because ADGM allows for more favorable terms for the employee.\n*   **2024 Regulations Reference:**  The explicit reference to the 2024 ADGM Employment Regulations is essential.  The employer *must* be thoroughly familiar with these regulations.\n*   **Employer Responsibility:** The instructions clearly place the onus on the employer to review, complete, and ensure accuracy. This is appropriate.\n*   **Housekeeping Instructions:** The instructions regarding removing brackets, highlights, and footnotes are standard and necessary for a clean, legally sound document.\n*   **Table of Contents:** The presence of a table of contents is good practice for readability and navigation.\n\n**Detailed Analysis by Section (Based on the Table of Contents):**\n\n1.  **DEFINITIONS AND INTERPRETATION:**\n\n    *   **Compliance Check:** This section is *critical*.  It *must* define all key terms used throughout the contract (e.g., \"Salary,\" \"Confidential Information,\" \"Gross Misconduct,\" \"Working Day,\" \"Working Week,\" \"Leave Year,\" etc.).\n    *   **ADGM Regulations Alignment:** Definitions *must* be consistent with the definitions provided in the ADGM Employment Regulations 2024.  For example, the definition of \"Salary\" should align with what is considered salary under the regulations for calculating end-of-service benefits.\n    *   **Interpretation Clause:**  A standard interpretation clause should be included, stating that the ADGM Employment Regulations 2024 will prevail in case of any conflict between the contract and the regulations.\n    *   **Review Point:**  Carefully review all definitions to ensure they are clear, unambiguous, and compliant with ADGM regulations.\n\n2.  **EMPLOYMENT TERM:**\n\n    *   **Compliance Check:** This section should clearly state the start date of employment. It should also specify whether the employment is for a fixed term or an indefinite term.\n    *   **Fixed-Term Considerations:** If it's a fixed-term contract, the expiry date *must* be clearly stated.  Be aware of the rules regarding renewal and termination of fixed-term contracts under ADGM law.  Repeated renewals of fixed-term contracts may be interpreted as an indefinite term contract.\n    *   **Indefinite Term Considerations:** If it's an indefinite term contract, the contract should clearly state the notice period required for termination by either party (subject to ADGM minimums).\n    *   **ADGM Regulations Alignment:** Ensure the termination provisions comply with the ADGM Employment Regulations regarding notice periods, reasons for termination, and end-of-service benefits.\n    *   **Review Point:**  Ensure the term is clearly defined and that termination provisions are compliant.\n\n3.  **HOURS OF EMPLOYMENT:**\n\n    *   **Compliance Check:** This section *must* specify the employee's normal working hours per day and per week.\n    *   **ADGM Regulations Alignment:**  The stated hours *must* comply with the maximum working hours permitted under the ADGM Employment Regulations.  Consider overtime provisions.\n    *   **Overtime:** If overtime is required, the contract *must* specify the rate of overtime pay (at least 1.25 times the basic hourly rate, as per ADGM regulations).  It should also address any limits on overtime hours.\n    *   **Breaks:**  The contract should mention the employee's entitlement to breaks during the working day, in accordance with ADGM regulations.\n    *   **Flexibility:** If flexible working arrangements are permitted, the contract should outline the terms and conditions of such arrangements.\n    *   **Review Point:**  Ensure compliance with maximum working hours, overtime pay requirements, and break entitlements.\n\n4.  **PROBATIONARY PERIOD:**\n\n    *   **Compliance Check:** This section should state the length of the probationary period.\n    *   **ADGM Regulations Alignment:** The probationary period *cannot* exceed six (6) months, as per ADGM regulations.\n    *   **Termination During Probation:** The contract should clearly state the notice period required for termination during the probationary period (which is typically shorter than the notice period after",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    },
+    {
+      "red_flag": "Document missing several common legal elements: RESOLVED, APPOINT, DIRECTOR",
+      "law_citation": "ADGM Companies Regulations 2020 - General Requirements",
+      "suggestion": "Review document against ADGM templates for completeness",
+      "severity": "Medium",
+      "category": "missing_clauses",
+      "confidence": "Low",
+      "compliant_clause": "Include all required legal elements as per ADGM regulations",
+      "section_index": 0,
+      "section_clause": "Document",
+      "section_text": "Disclaimer: This Employment Contract is not to be deemed, considered or relied upon as legal advice and should not be treated as a substitute for specific advice concerning individual employment situa...",
+      "section_type": "content",
+      "analysis_method": "graceful_degradation"
+    },
+    {
+      "red_flag": "Okay, I can help you analyze the provided text for ADGM compliance, focusing on the 2024 Employment Regulations.  I will break down the key areas and potential compliance issues, keeping in mind the disclaimer and instructions provided.\n\n**Disclaimer Analysis:**\n\n*   **Importance:** The disclaimer is crucial. It explicitly states that the document is *not* legal advice and should not be used as a substitute for consulting with independent legal counsel. This protects the provider of the template from liability if the contract is used incorrectly or leads to legal issues.\n*   **ADGM Regulations:** It correctly references the ADGM Employment Regulations of 2024 and acknowledges that these regulations are subject to change. This is important because ADGM laws are frequently updated.\n*   **Employer Responsibility:** It emphasizes that the employer is responsible for ensuring the contract complies with the regulations and that they can offer more favorable terms than the minimum requirements.\n\n**Instructions Analysis:**\n\n*   **Clarity:** The instructions are clear and concise, guiding the employer through the process of customizing the template.\n*   **Key Actions:** The instructions highlight the essential steps: reviewing bracketed text, choosing options, inserting specific information, removing brackets and highlights, and deleting footnotes and the instruction page itself.\n*   **Cross-Referencing:** The instruction to update cross-references if clauses are added or deleted is vital for maintaining the contract's integrity.\n*   **Verification:** The final checklist before signing ensures accuracy and completeness.\n\n**Compliance Analysis of the Table of Contents (Based on ADGM Employment Regulations 2024):**\n\nHere's a breakdown of each section in the Table of Contents and potential compliance considerations:\n\n1.  **DEFINITIONS AND INTERPRETATION:**\n\n    *   **Compliance Focus:** This section is critical for clarity and avoiding ambiguity.  It should define key terms used throughout the contract (e.g., \"Salary,\" \"Confidential Information,\" \"Working Day,\" \"Gross Misconduct\").\n    *   **ADGM Regulations:** Ensure definitions align with the definitions used in the ADGM Employment Regulations.  For example, the definition of \"Salary\" should be consistent with how it's defined for calculating end-of-service benefits.\n    *   **Interpretation Clause:**  Include a standard interpretation clause stating that the ADGM Employment Regulations will prevail in case of conflict between the contract and the regulations.\n\n2.  **EMPLOYMENT TERM:**\n\n    *   **Compliance Focus:** Specifies whether the employment is for a fixed term or an indefinite term.\n    *   **ADGM Regulations:**  ADGM allows for both fixed-term and indefinite-term contracts.  The contract must clearly state the term.  If it's a fixed-term contract, specify the start and end dates.  Be aware of the rules regarding renewal of fixed-term contracts and their potential conversion to indefinite-term contracts under ADGM law.\n    *   **Termination:** This section should cross-reference the termination clause (which is likely in a later section) and ensure it complies with ADGM regulations regarding notice periods and grounds for termination.\n\n3.  **HOURS OF EMPLOYMENT:**\n\n    *   **Compliance Focus:** Defines the employee's working hours, including daily and weekly hours, break times, and overtime.\n    *   **ADGM Regulations:**\n        *   **Maximum Working Hours:**  ADGM regulations specify maximum working hours.  Ensure the contract complies with these limits.\n        *   **Overtime:**  The contract must address overtime pay.  ADGM regulations mandate overtime pay at a rate of at least 1.5 times the employee's basic wage.\n        *   **Rest Periods:**  Ensure compliance with regulations regarding rest periods during the workday and weekly rest days.  Typically, one day of rest per week is required.\n        *   **Flexibility:**  If the employer intends to implement flexible working arrangements, the contract should outline these arrangements and ensure they comply with ADGM regulations.\n\n4.  **PROBATIONARY PERIOD:**\n\n    *   **Compliance Focus:** Defines the length of the probationary period.\n    *   **ADGM Regulations:**\n        *   **Maximum Length:** ADGM regulations specify the maximum length of the probationary period.  Ensure the contract does not exceed this limit.\n        *   **Termination During Probation:**  The contract should clearly state the notice period required for termination during the probationary period.  ADGM regulations typically allow for shorter notice periods during probation.\n        *   **Confirmation of Employment:**  Consider including a clause stating that if the employee's performance is satisfactory, their employment will be confirmed after the probationary period.\n\n5.  **PLACE OF EMPLOYMENT:**\n\n    *   **Compliance Focus:** Specifies the primary location where the employee will work.\n    *   **ADGM Regulations:** While not directly regulated in the same way as working hours, this is",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Review with qualified ADGM legal counsel",
+      "severity": "Medium",
+      "category": "compliance",
+      "confidence": "Low",
+      "compliant_clause": "Refer to official ADGM templates"
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [
+    {
+      "process": "Employment",
+      "relevance": 0.06666666666666667,
+      "overlapping_docs": 1,
+      "confidence": 0.5
+    }
+  ],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing",
+    "Single employment document detected - consider adding Employee Handbook or Employment Policy"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}
