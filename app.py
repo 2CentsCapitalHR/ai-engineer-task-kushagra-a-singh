@@ -265,7 +265,7 @@ if config_errors:
 st.markdown(
     f"""
 <div class="main-header">
-    <h1>{PAGE_ICON} ADGM-Compliant Corporate Agent</h1>
+    <h1>{PAGE_ICON} ADGM-Compliant Corporate Agent - Project done by Kushagra Singh</h1>
     <h3>Intelligent AI-powered legal assistant for ADGM jurisdiction</h3>
     <p>🚀 Enhanced document intelligence • 📊 Comprehensive compliance analysis • ⚖️ Real-time legal validation</p>
 </div>

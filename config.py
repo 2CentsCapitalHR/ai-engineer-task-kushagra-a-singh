@@ -32,7 +32,7 @@ MIN_SECTION_LENGTH = 10  # Minimum text length for analysis
 MAX_SECTIONS_PER_DOC = 50  # Maximum sections to analyze per document
 
 # UI Configuration
-PAGE_TITLE = "ADGM Corporate Agent v2.0"
+PAGE_TITLE = "ADGM Corporate Agent"
 PAGE_ICON = "⚖️"
 LAYOUT = "wide"
 INITIAL_SIDEBAR_STATE = "expanded"
