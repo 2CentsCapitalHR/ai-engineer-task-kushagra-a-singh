@@ -1,6 +1,4 @@
-# 🔧 Developer Guide - ADGM Corporate Agent
-
-> **Technical documentation for developers and contributors**
+# Technical Documentation - ADGM Corporate Agent
 
 ## 🏗️ **Architecture Overview**
 
@@ -19,9 +17,9 @@
 
 ### **Data Flow**
 ```
-Document Upload → Text Extraction → RAG Retrieval → AI Analysis → Output Generation
-     ↓                ↓              ↓            ↓            ↓
-  Streamlit UI → python-docx → SentenceTransformers → Gemini → DOCX+JSON
+Document Upload → Text Extraction →    RAG Retrieval   → AI Analysis → Output Generation
+        ↓              ↓                     ↓               ↓              ↓
+  Streamlit UI  →    python-docx  → SentenceTransformers → Gemini      → DOCX+JSON
 ```
 
 ## 🔄 **Dual RAG Implementation**
@@ -164,6 +162,34 @@ def detect_document_type(text, all_types, use_ai_fallback=True):
     return "Unknown"
 ```
 
+## 🧠 Smart Batching, Parsing & Error Handling
+
+### Batched Prompt Markers
+- Sections in a batch are wrapped with explicit markers to reliably trigger batched handling:
+  - `--- SECTION i START ---` and `--- SECTION i END ---`
+
+### JSON-Only Responses
+- Prompts enforce JSON-only output (no prose), double quotes, and no markdown fences.
+- `_parse_batched_response` normalizes lists into a keyed dict: `section_1`, `section_2`, ...
+
+### Dict Passthrough to SmartBatcher
+- When a batched response is successfully parsed to a dict, we pass it directly into `SmartBatcher.parse_batch_response` (no re-preprocessing of strings), ensuring robust per-section mapping.
+
+### Consolidated Technical Notice
+- If preprocessing fails for an entire batch, a single consolidated “⚠️ TECHNICAL NOTICE” is placed at the top of the reviewed document instead of repeating the same message across sections.
+
+### Tuning Batching via Environment
+- Use these env vars to tune stability on free plans:
+  - `GEMINI_MAX_SECTIONS_PER_BATCH` (default 5; reduce to 4 if needed)
+  - `GEMINI_MAX_TOTAL_CHARS` (default 4000; reduce to 3500 if needed)
+  - `GEMINI_MAX_REQUESTS_PER_MINUTE` (default 15)
+  - `GEMINI_RETRY_ATTEMPTS` (default 3)
+
+### Developer Notes
+- If you see logs like “Parsed results count doesn’t match batch size”, lower the batch size or total chars.
+- Ensure `enhanced_gemini_analysis` takes the batched path when markers exist; this is already handled by checking for `--- SECTION` markers.
+- The doc summary shows categories, counts, and helpful links only for real issues; technical notices short-circuit further comment insertion.
+
 ## ⚙️ **Configuration Management**
 
 ### **Environment Variables**
@@ -207,7 +233,7 @@ def get_rag_config() -> Dict[str, Any]:
     }
 ```
 
-## 🧪 **Testing & Development**
+## **Testing & Development**
 
 ### **Running Tests**
 ```bash
@@ -313,27 +339,3 @@ get_rag_config()          # RAG-specific configuration
 validate_config()          # Configuration validation
 ```
 
-## 🔄 **Contributing Guidelines**
-
-### **Code Standards**
-- **Type Hints**: Use Python type hints for all functions
-- **Docstrings**: Include comprehensive docstrings
-- **Error Handling**: Implement proper exception handling
-- **Logging**: Use structured logging for debugging
-
-### **Testing Requirements**
-- **Unit Tests**: Test individual functions
-- **Integration Tests**: Test end-to-end workflows
-- **Performance Tests**: Verify both RAG backends
-- **Error Tests**: Test error conditions and fallbacks
-
-### **Pull Request Process**
-1. **Fork** the repository
-2. **Create** feature branch
-3. **Implement** changes with tests
-4. **Test** both RAG backends
-5. **Submit** pull request with description
-
----
-
-**For technical questions, check the code comments or create an issue on GitHub.** 

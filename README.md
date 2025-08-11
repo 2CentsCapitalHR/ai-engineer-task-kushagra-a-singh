@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/vgbm4cZ0)
 
-# 🏛️ ADGM Corporate Agent v2.0
+# 🏛️ ADGM Corporate Agent
 
 > **Intelligent AI-powered Corporate Agent fully compliant with Abu Dhabi Global Market (ADGM) regulations**
 
@@ -21,10 +21,43 @@
 - 🧠 **AI-Powered Analysis**: Google Gemini 2.0 Flash integration
 - 📊 **Comprehensive Reporting**: Detailed compliance scores and recommendations
 - 🎨 **Smart UI**: Interactive Streamlit interface with real-time feedback
-- 📁 **Multi-Document Support**: Process up to 10 documents simultaneously
+- 📁 **Multi-Document Support**: Process up to 10 documents simultaneously  
+
+---
+
+## 🖼️ **App Preview**
+
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/ecaccc58-e171-4b97-b0af-427dd87ba692" width="800" alt="Feature Screenshot 1" />
+<br/><br/>
+<img src="https://github.com/user-attachments/assets/79ba8c8e-eb73-4296-b218-66733a52f837" width="800" alt="Feature Screenshot 2" />
+<br/><br/>
+<img src="https://github.com/user-attachments/assets/d330d072-cc9a-472d-bc2a-aa814b43e76d" width="800" alt="Feature Screenshot 3" />
+<br/><br/>
+<img src="https://github.com/user-attachments/assets/4c4c7338-9622-43ad-bb44-a291c345389f" width="800" alt="Feature Screenshot 4" />
+
+</div>
+
+---
+
+### 🗂️ Before Processing
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/70fa10e4-33aa-4b29-877c-72beb1a16594" width="800" alt="Before Processing" />
+</div>
+
+
+
+### ✅ After Processing
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/e852cecc-3f8a-40e3-8fdf-8b35820addc5" width="800" alt="After Processing" />
+</div>
+
+---
 
 ## 🔄 **Dual RAG Architecture**
-
 ### **📦 In-Memory Backend (Default)**
 - **Speed**: ~1ms retrieval (lightning fast)
 - **Memory**: ~2MB (lightweight)
@@ -66,13 +99,26 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 GOOGLE_MODEL=gemini-2.0-flash
 
 # RAG Configuration
-USE_CHROMADB=false              # true/false
-RAG_TOP_K=3                     # Documents to retrieve
-RAG_SIMILARITY_THRESHOLD=0.1    # Similarity threshold
+USE_CHROMADB=false
+RAG_TOP_K=3
+RAG_SIMILARITY_THRESHOLD=0.1
 
-# Performance
-BATCH_SIZE=5                    # Documents per batch
-MAX_WORKERS=3                   # Parallel processing
+# LLM Configuration  
+GEMINI_TEMPERATURE=0.1
+GEMINI_MAX_TOKENS=1024
+
+# Performance Configuration
+BATCH_SIZE=5
+MAX_WORKERS=3
+
+# Analysis Features
+ENABLE_STRUCTURE_ANALYSIS=true
+ENABLE_COMPLIANCE_ANALYSIS=true
+ENABLE_RED_FLAG_ANALYSIS=true
+
+# UI Configuration
+SHOW_DEBUG_INFO=false
+ENABLE_DOWNLOAD_ALL=true
 ```
 
 ### **4. Run Application**
@@ -149,9 +195,14 @@ streamlit run app.py
 }
 ```
 
-## 🎯 **Configuration Options**
+## 🧠 Smart Batching & Robust Parsing
+- Combines multiple small sections into one Gemini call while preserving per‑section results
+- Enforces JSON‑only responses with strict prompt instructions
+- Falls back gracefully and, on rare parser failures, inserts a single consolidated technical notice (not repeated) in the reviewed doc
 
-### **Environment Variables**
+## 🎯 Configuration Options
+
+### Environment Variables
 ```bash
 # RAG Backend
 USE_CHROMADB=false              # true/false
@@ -162,64 +213,27 @@ RAG_SIMILARITY_THRESHOLD=0.1    # Similarity threshold
 GEMINI_TEMPERATURE=0.1          # 0.0-2.0
 GEMINI_MAX_TOKENS=1024          # Max output tokens
 
-# Performance
+# Performance (UI-level)
 BATCH_SIZE=5                    # Documents per batch
 MAX_WORKERS=3                   # Parallel threads
 
-# Features
-ENABLE_STRUCTURE_ANALYSIS=true  # Structure validation
-ENABLE_COMPLIANCE_ANALYSIS=true # Compliance checking
-ENABLE_RED_FLAG_ANALYSIS=true   # Issue detection
+# Enhanced system (batching & free-plan tuning)
+GEMINI_FREE_PLAN=true           # Use conservative defaults
+GEMINI_MAX_SECTIONS_PER_BATCH=5 # Lower to 4 for more reliability if needed
+GEMINI_MAX_TOTAL_CHARS=4000     # Lower to 3500 for more reliability
+GEMINI_MAX_REQUESTS_PER_MINUTE=15
+GEMINI_RETRY_ATTEMPTS=3
 ```
 
-## **Testing without UI**
+## 🔍 How It Works
 
-### **Quick Test**
-```bash
-python demo.py
-```
-
-### **Test Dual RAG**
-```bash
-# Test both backends
-python -c "
-import os
-os.environ['USE_CHROMADB'] = 'false'
-from adgm_rag import retrieve_relevant_snippets
-print('In-Memory:', len(retrieve_relevant_snippets('ADGM incorporation')))
-"
-```
-
-## 🏆 **Performance Metrics**
-
-### **Current Scale (14 Documents)**
-- **In-Memory**: ~1ms retrieval, ~2MB memory
-- **ChromaDB**: ~5-10ms retrieval, ~50MB memory
-- **Recommendation**: Stick with In-Memory for now
-
-### **Scalability**
-- **In-Memory**: Optimal up to 50 documents
-- **ChromaDB**: Scales to 10,000+ documents
-- **Switch Point**: When you exceed 50 documents
-
-## 🔧 **Technical Architecture**
-
-### **Core Components**
-- **Streamlit UI**: Interactive web interface
-- **Document Parser**: `python-docx` integration
-- **RAG Engine**: Dual backend (In-Memory/ChromaDB)
-- **LLM Integration**: Google Gemini 2.0 Flash
-- **Embedding Model**: SentenceTransformers (all-MiniLM-L6-v2)
-
-### **Data Flow**
-```
-Document Upload → Text Extraction → RAG Retrieval → AI Analysis → Output Generation
-```
-
-### **Performance Tips**
-- Keep `USE_CHROMADB=false` for current scale
-- Use `BATCH_SIZE=5` for optimal processing
-- Enable `SHOW_DEBUG_INFO=false` in production
+### 2. AI Analysis Pipeline
+- **Text Extraction**: Parse document content
+- **Type Detection**: Identify document category
+- **RAG Retrieval**: Find relevant ADGM regulations
+- **Smart Batching**: Merge multiple sections with explicit markers (`--- SECTION i START/END ---`) to trigger batched handling
+- **Strict JSON Parsing**: Enforce JSON‑only output and parse per section
+- **Structure Validation**: Verify required sections
 
 ## 📈 **Future Enhancements**
 
@@ -227,7 +241,6 @@ Document Upload → Text Extraction → RAG Retrieval → AI Analysis → Output
 - 🔍 Advanced similarity metrics
 - 📱 Mobile-responsive UI
 - 🌐 Multi-language support
-- 🔐 Enhanced security features
 - 📊 Advanced analytics dashboard
 
 ### **Scaling Strategy**
