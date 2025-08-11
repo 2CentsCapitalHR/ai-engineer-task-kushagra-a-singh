@@ -1,0 +1,410 @@
+{
+  "analysis_metadata": {
+    "process": "Company Incorporation",
+    "process_confidence": 0.0,
+    "documents_uploaded": 1,
+    "required_documents": 16,
+    "processing_time_seconds": 30.004438,
+    "analysis_timestamp": "2025-08-11T19:33:33.152573"
+  },
+  "completeness_analysis": {
+    "missing_documents": [
+      "Board Resolution approving accounts",
+      "Memorandum of Association (MoA/MoU)",
+      "Articles of Association (AoA)",
+      "Shareholder Resolution (for Incorporation)",
+      "Identification documents for Authorised Signatories and Directors",
+      "Ultimate Beneficial Owner (UBO) Declaration Form",
+      "Lease Agreement or Office Space Registration",
+      "Change of Registered Address Notice",
+      "Auditors Report",
+      "Director's Report",
+      "Register of Members and Directors",
+      "Incorporation Application Form",
+      "Hub71 Approval Letter (if applicable)",
+      "Source of Wealth Declaration",
+      "Audited Annual Accounts"
+    ],
+    "present_documents": [
+      "Board Resolution (for Incorporation)"
+    ],
+    "extra_documents": [],
+    "completeness_percentage": 6.25,
+    "weighted_completeness": 6.666666666666667,
+    "missing_by_priority": {
+      "Critical": [
+        "Memorandum of Association (MoA/MoU)",
+        "Articles of Association (AoA)",
+        "Ultimate Beneficial Owner (UBO) Declaration Form",
+        "Incorporation Application Form"
+      ],
+      "Important": [
+        "Board Resolution approving accounts",
+        "Shareholder Resolution (for Incorporation)",
+        "Identification documents for Authorised Signatories and Directors",
+        "Lease Agreement or Office Space Registration",
+        "Register of Members and Directors"
+      ],
+      "Optional": [
+        "Change of Registered Address Notice",
+        "Auditors Report",
+        "Director's Report",
+        "Hub71 Approval Letter (if applicable)",
+        "Source of Wealth Declaration",
+        "Audited Annual Accounts"
+      ]
+    }
+  },
+  "compliance_summary": {
+    "total_issues": 23,
+    "average_compliance_score": 0.0,
+    "issues_by_severity": {
+      "high": 5,
+      "medium": 13,
+      "low": 5
+    },
+    "issues_by_category": {
+      "compliance": 12,
+      "formatting": 7,
+      "content": 3,
+      "jurisdiction": 1
+    }
+  },
+  "document_analysis": [
+    {
+      "Document": "1.docx",
+      "Type": "Board Resolution (for Incorporation)",
+      "Priority": "Important",
+      "Compliance Score": "0.0%",
+      "Total Issues": 23,
+      "High Priority": 5,
+      "Status": "❌ Issues Found"
+    }
+  ],
+  "detailed_issues": [
+    {
+      "red_flag": "Missing specific reference to the ADGM Companies Regulations 2020.",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Explicitly state that the incorporation is in compliance with the ADGM Companies Regulations 2020.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 5,
+      "section_clause": "Unknown",
+      "section_text": "We, the undersigned, being the incorporating shareholders, resolve to incorporate a public company limited by shares in the Abu Dhabi Global Market un...",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should specify the scope and limitations of the authorized person's powers. Consider adding a clause limiting the authorized person to actions directly related to the incorporation process.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 21",
+      "suggestion": "Add a clause clarifying that the authorized person's powers are limited to actions directly related to the incorporation process and in compliance with ADGM regulations.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 19,
+      "section_clause": "Unknown",
+      "section_text": "IT WAS FURTHER RESOVED, that {insert authorised persons name(s)} is/are, and each acting alone is, hereby authorized to do and perform any and all suc...",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "This section appears to be metadata or guidance and not a formal part of the resolution. It should be removed from the formal resolution document.",
+      "law_citation": "N/A",
+      "suggestion": "Remove this section from the formal resolution document.",
+      "severity": "Low",
+      "category": "formatting",
+      "section_index": 21,
+      "section_clause": "Unknown",
+      "section_text": "Table 1: SAMPLE & GUIDANCE | SAMPLE & GUIDANCE; Title: | Resolution of Multiple Individual Shareholders for incorporation of Public Company Limited by...",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "It should be explicitly stated that the Articles of Association comply with the ADGM Companies Regulations 2020.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 13",
+      "suggestion": "Add a clause stating that the Articles of Association comply with the ADGM Companies Regulations 2020.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 11,
+      "section_clause": "Unknown",
+      "section_text": "IT WAS RESOLVED that the Company adopts the Articles of Association for the purpose of incorporation of the Company in the Abu Dhabi Global Market.",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should specify the currency (USD) and the number of shares that the authorized share capital represents.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 28",
+      "suggestion": "Specify the currency (USD) and the number of shares that the authorized share capital represents. For example: \"IT WAS RESOLVED that the amount of the authorised share capital of the company shall be [xxxx] USD, divided into [yyyy] shares of [zzzz] USD each.\"",
+      "severity": "Medium",
+      "category": "content",
+      "section_index": 13,
+      "section_clause": "Unknown",
+      "section_text": "IT WAS RESOLVED that the amount of the authorised share capital of the company shall be as follows: [xxxx] USD",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "This section is a table header and lacks specific shareholder information. It needs to be populated with the required details.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 30",
+      "suggestion": "Populate the table with the Shareholder’s Name, Share Class Name, Number of Issued Shares, Amount paid, and Amount unpaid (if any) for each shareholder.",
+      "severity": "High",
+      "category": "content",
+      "section_index": 26,
+      "section_clause": "Unknown",
+      "section_text": "Table 6: Shareholder’s Name | Share Class Name | Number of Issued Shares | Amount paid | Amount unpaid (if any)",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "This section is just a title and doesn't contain any operative resolutions. It should be integrated with other sections or expanded.",
+      "law_citation": "N/A",
+      "suggestion": "Integrate this title with the relevant resolutions or expand it to include a summary of the resolutions.",
+      "severity": "Low",
+      "category": "formatting",
+      "section_index": 0,
+      "section_clause": "Unknown",
+      "section_text": "RESOLUTION OF INCORPORATING SHAREHOLDERS",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should specify the full names and positions of the officers being appointed.",
+      "law_citation": "ADGM Companies Regulations 2020, Article 67",
+      "suggestion": "Include the full names and positions of the officers being appointed. For example: \"IT WAS RESOLVED, to appoint [Full Name] as [Position] of the company upon incorporation.\"",
+      "severity": "Medium",
+      "category": "content",
+      "section_index": 6,
+      "section_clause": "Unknown",
+      "section_text": "IT WAS RESOLVED, to appoint the officers of the company upon incorporation as follows.",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should explicitly state the powers granted to the authorised signatory(ies). Vague descriptions can lead to compliance issues.",
+      "law_citation": "Companies Regulations 2020, Article 67",
+      "suggestion": "Clearly define the scope of authority granted to the authorised signatory(ies), including specific actions they are permitted to undertake on behalf of the company.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 7,
+      "section_clause": "Unknown",
+      "section_text": "Appointment of Authorised Signatory(ies)",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should specify the currency of the issued share capital. Omitting this detail can cause ambiguity.",
+      "law_citation": "Companies Regulations 2020, Article 55",
+      "suggestion": "Include the currency (e.g., USD, AED) in which the issued share capital is denominated.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 15,
+      "section_clause": "Unknown",
+      "section_text": "IT WAS RESOLVED that the proposed issued share capital of the company shall be as follows:",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should detail the class of shares (e.g., ordinary, preference) and the rights attached to each class. Lack of detail can lead to shareholder disputes.",
+      "law_citation": "Companies Regulations 2020, Article 56",
+      "suggestion": "Specify the class of shares and the rights, privileges, and restrictions attached to each class of shares.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 17,
+      "section_clause": "Unknown",
+      "section_text": "The issued share capital shall be structured as follows.",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should explicitly state the powers granted to the signatory for incorporation purposes. Vague descriptions can lead to compliance issues.",
+      "law_citation": "Companies Regulations 2020, Article 12",
+      "suggestion": "Clearly define the scope of authority granted to the signatory for incorporation purposes, including specific actions they are permitted to undertake on behalf of the company.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 18,
+      "section_clause": "Unknown",
+      "section_text": "Appointment of Signatory for Incorporation Purposes",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "It is unclear if the signatures are witnessed. ADGM may require witnessed signatures for certain incorporation documents.",
+      "law_citation": "Companies Regulations 2020, Article 13",
+      "suggestion": "Confirm whether witnessed signatures are required for incorporation documents in ADGM and ensure compliance.",
+      "severity": "Low",
+      "category": "compliance",
+      "section_index": 20,
+      "section_clause": "Unknown",
+      "section_text": "Signature of Incorporating Shareholders",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "No issues found",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Document appears compliant",
+      "severity": "Low",
+      "category": "formatting",
+      "section_index": 27,
+      "section_clause": "Unknown",
+      "section_text": "Table 7: Shareholder’s Name | Shareholder’s Signature | Date",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "No issues found",
+      "law_citation": "ADGM Companies Regulations 2020",
+      "suggestion": "Document appears compliant",
+      "severity": "Low",
+      "category": "formatting",
+      "section_index": 2,
+      "section_clause": "Unknown",
+      "section_text": "[Insert proposed company name]",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "The resolution should specify the powers granted based on the signing authority (Jointly/Severally).",
+      "law_citation": "Companies Regulations 2020, Article 67",
+      "suggestion": "Clearly define the scope of authority granted based on the signing authority (Jointly/Severally), including specific actions they are permitted to undertake on behalf of the company.",
+      "severity": "Medium",
+      "category": "compliance",
+      "section_index": 22,
+      "section_clause": "Unknown",
+      "section_text": "Table 2: Name | Signing Authority (Jointly/Severally)",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "Missing context. Table 3's purpose is unclear. It's impossible to assess compliance without knowing what this table represents. It could be related to directors, shareholders, or authorized signatories, each having different requirements under the ADGM Companies Regulations 2020.",
+      "law_citation": "ADGM Companies Regulations 2020, various sections depending on the table's purpose (e.g., Schedule 1 for directors' details, Part 3 for shareholders).",
+      "suggestion": "Clarify the purpose of Table 3. If it relates to directors, ensure compliance with Schedule 1 of the ADGM Companies Regulations 2020, including providing full names, addresses, and other required details. If it relates to shareholders, ensure compliance with Part 3, including details of shareholdings.",
+      "severity": "High",
+      "category": "compliance",
+      "section_index": 23,
+      "section_clause": "Unknown",
+      "section_text": "Table 3: Name | Type (Individual/Body Corporate)",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "Missing context. Table 4's purpose is unclear. The 'Capacity' field suggests it relates to authorized signatories or individuals acting on behalf of the company. Without knowing the context, it's impossible to assess compliance.",
+      "law_citation": "ADGM Companies Regulations 2020, relevant sections depend on the context (e.g., related to authorized signatories, powers of attorney).",
+      "suggestion": "Clarify the purpose of Table 4. If it relates to authorized signatories, ensure the resolution clearly defines the scope of their authority and complies with ADGM requirements for delegation of authority.",
+      "severity": "High",
+      "category": "compliance",
+      "section_index": 24,
+      "section_clause": "Unknown",
+      "section_text": "Table 4: Name | Capacity (Jointly/Severally)",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "Incomplete information. While the table outlines share classes, nominal value, number of issued shares, and amount of issued shares, it lacks crucial details such as the currency of the nominal value and issued shares amount. Also, it doesn't specify the rights attached to each share class, which is a requirement under the ADGM Companies Regulations 2020.",
+      "law_citation": "ADGM Companies Regulations 2020, specifically regulations concerning share capital and rights attached to shares.",
+      "suggestion": "Include the currency for nominal value and issued shares amount. Clearly define the rights, privileges, restrictions, and conditions attached to each share class as required by the ADGM Companies Regulations 2020. This includes voting rights, dividend rights, and rights upon liquidation.",
+      "severity": "High",
+      "category": "compliance",
+      "section_index": 25,
+      "section_clause": "Unknown",
+      "section_text": "Table 5: Share Class Name | Nominal Value | Number of Issued Shares | Amount of Issued Shares",
+      "section_type": "content",
+      "confidence": "Medium",
+      "compliant_clause": "Refer to ADGM guidelines",
+      "analysis_method": "enhanced_parsing"
+    },
+    {
+      "red_flag": "Missing required sections: directors present, quorum, resolutions",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Missing signature section",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "Resolution missing date",
+      "law_citation": "ADGM Document Structure Requirements",
+      "suggestion": "Review document structure and ensure all required sections are present",
+      "severity": "Medium",
+      "category": "formatting",
+      "section_index": 0,
+      "section_type": "structure"
+    },
+    {
+      "red_flag": "The resolution does not explicitly state that the Articles of Association specify ADGM as the governing jurisdiction.",
+      "law_citation": "ADGM Registration and Incorporation",
+      "suggestion": "Ensure the Articles of Association explicitly state ADGM as the governing jurisdiction.",
+      "severity": "High",
+      "category": "jurisdiction",
+      "confidence": "High",
+      "compliant_clause": null,
+      "analysis_method": "enhanced_parsing"
+    }
+  ],
+  "recommendations": [
+    "Immediate action required: Prepare critical missing documents",
+    "Important documents missing: Plan to prepare within 2-3 business days"
+  ],
+  "next_steps": [
+    "Focus on preparing Articles of Association and Memorandum of Association first",
+    "Schedule board/shareholder meetings for required resolutions"
+  ],
+  "alternative_processes": [],
+  "combination_issues": [
+    "Board Resolution present but corresponding Shareholder Resolution missing"
+  ],
+  "process_validation": {
+    "valid": false,
+    "issues": [
+      "Insufficient documents: 1 provided, minimum 4 required",
+      "Missing mandatory combination: Articles of Association (AoA) and Memorandum of Association (MoA/MoU)"
+    ],
+    "warnings": [],
+    "recommendations": []
+  }
+}

@@ -1458,8 +1458,7 @@ st.markdown(
     """
 <div style='text-align: center; color: #666; margin-top: 2rem;'>
 <small>
-ADGM Corporate Agent v2.0 | Enhanced Document Intelligence<br>
-⚠️ This system provides guidance only. Always consult qualified ADGM legal counsel for final compliance verification.
+ADGM Corporate Agent | Enhanced Document Intelligence<br>
 </small>
 </div>
 """,
