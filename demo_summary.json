@@ -1,0 +1,61 @@
+{
+  "demo_timestamp": "2025-08-09T15:51:12.332081",
+  "documents_analyzed": 10,
+  "detected_process": "Company Incorporation",
+  "document_types_found": [
+    "Board Resolution (for Incorporation)",
+    "Board Resolution (for Incorporation)",
+    "Standard Employment Contract (2024 update)",
+    "Standard Employment Contract (2024 update)",
+    "Standard Employment Contract (2024 update)",
+    "Articles of Association (AoA)",
+    "Board Resolution (for Incorporation)",
+    "Standard Employment Contract (2024 update)",
+    "Memorandum of Association (MoA/MoU)",
+    "Ultimate Beneficial Owner (UBO) Declaration Form"
+  ],
+  "completeness_percentage": 25.0,
+  "missing_documents": [
+    "Shareholder Resolution (for Incorporation)",
+    "Incorporation Application Form",
+    "Audited Annual Accounts",
+    "Auditors Report",
+    "Lease Agreement or Office Space Registration",
+    "Director's Report",
+    "Hub71 Approval Letter (if applicable)",
+    "Board Resolution approving accounts",
+    "Source of Wealth Declaration",
+    "Change of Registered Address Notice",
+    "Register of Members and Directors",
+    "Identification documents for Authorised Signatories and Directors"
+  ],
+  "combination_issues": [
+    "Incomplete incorporation package - missing: Incorporation Application Form",
+    "Board Resolution present but corresponding Shareholder Resolution missing",
+    "UBO Declaration requires Register of Members and Directors",
+    "Single employment document detected - consider adding Employee Handbook or Employment Policy"
+  ],
+  "structure_issues": [
+    [
+      "Missing required sections: directors present, quorum, resolutions",
+      "Missing signature section",
+      "Resolution missing date"
+    ],
+    [
+      "Missing required sections: directors present, quorum, signatures",
+      "Resolution missing date"
+    ],
+    [
+      "Missing required sections: registered office, shareholders, meetings",
+      "Document should reference ADGM jurisdiction"
+    ],
+    [
+      "Missing required sections: date, directors present, quorum"
+    ],
+    [
+      "Missing required sections: initial members, share capital",
+      "Missing signature section",
+      "Document should reference ADGM jurisdiction"
+    ]
+  ]
+}
