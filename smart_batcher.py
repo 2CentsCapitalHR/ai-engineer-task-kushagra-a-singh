@@ -394,7 +394,7 @@ class SmartBatcher:
                     section_text = getattr(section, "text", "Error processing section")
                     section_clause = getattr(section, "clause", f"Section_{i+1}")
                     sections_content.append(
-                        f"Section {i+1} ({section_clause}):\n{section_text}\n"
+                        f"--- SECTION {i+1} START ---\nSection {i+1} ({section_clause}):\n{section_text}\n--- SECTION {i+1} END ---\n"
                     )
                 except IndexError as index_error:
                     logger.warning(f"Index error accessing section {i}: {index_error}")
@@ -404,7 +404,7 @@ class SmartBatcher:
                         f"Error processing section {i} in prompt creation: {section_error}"
                     )
                     sections_content.append(
-                        f"Section {i+1} (Error):\nError processing section\n"
+                        f"--- SECTION {i+1} START ---\nSection {i+1} (Error):\nError processing section\n--- SECTION {i+1} END ---\n"
                     )
 
             # Combine all sections
@@ -418,7 +418,7 @@ Number of Sections: {len(batch)}
 
 {combined_content}
 
-Please provide a comprehensive analysis in the following JSON format:
+CRITICAL: You MUST respond with ONLY valid JSON in this exact format. Do not include any text before or after the JSON.
 
 {{
     "batched_response": true,
@@ -442,14 +442,20 @@ Please provide a comprehensive analysis in the following JSON format:
     // ... continue for each section
 }}
 
+IMPORTANT:
+- Return ONLY the JSON object, no additional text
+- Ensure all quotes are properly escaped
+- Use double quotes for all strings
+- Do not include markdown formatting
+- Focus on ADGM Companies Regulations 2020 compliance
+- Provide specific citations from ADGM regulations where possible
+
 Focus on:
 1. ADGM Companies Regulations 2020 compliance
 2. Required clauses and formatting
 3. Jurisdiction-specific requirements
 4. Corporate governance standards
-5. Regulatory compliance issues
-
-Provide specific citations from ADGM regulations where possible."""
+5. Regulatory compliance issues"""
 
             return prompt
         except Exception as e:
@@ -477,8 +483,12 @@ Provide analysis in JSON format with section_1, section_2, etc."""
                 logger.warning(f"Invalid batch: {type(batch)}, returning empty results")
                 return []
 
-            # Enhanced response preprocessing and validation
-            parsed_response = self._preprocess_and_validate_response(response)
+            # If response is already a dict (pre-parsed), use it directly
+            if isinstance(response, dict):
+                parsed_response = response
+            else:
+                # Enhanced response preprocessing and validation
+                parsed_response = self._preprocess_and_validate_response(response)
 
             if parsed_response is None:
                 logger.warning(
@@ -534,8 +544,13 @@ Provide analysis in JSON format with section_1, section_2, etc."""
                 logger.warning("Empty or whitespace-only response received")
                 return None
 
-            # Clean response text with multiple strategies
+            # Enhanced response cleaning and validation
             cleaned_response = self._clean_response_text(response)
+
+            # Check if the response contains meaningful content
+            if not self._has_meaningful_content(cleaned_response):
+                logger.warning("Response lacks meaningful content after cleaning")
+                return None
 
             # Try multiple JSON parsing strategies
             parsed = self._parse_json_with_fallbacks(cleaned_response)
@@ -549,6 +564,28 @@ Provide analysis in JSON format with section_1, section_2, etc."""
         except Exception as e:
             logger.error(f"Error in response preprocessing: {e}")
             return None
+
+    def _has_meaningful_content(self, text: str) -> bool:
+        """Check if the cleaned response contains meaningful content"""
+        if not text or len(text.strip()) < 10:
+            return False
+
+        # Check for common analysis keywords
+        meaningful_keywords = [
+            "red_flag",
+            "issue",
+            "problem",
+            "compliance",
+            "suggestion",
+            "law",
+            "regulation",
+            "requirement",
+            "violation",
+            "recommendation",
+        ]
+
+        text_lower = text.lower()
+        return any(keyword in text_lower for keyword in meaningful_keywords)
 
     def _clean_response_text(self, response: str) -> str:
         """Clean response text with multiple strategies"""
@@ -629,6 +666,7 @@ Provide analysis in JSON format with section_1, section_2, etc."""
             self._try_fix_and_parse,
             self._try_extract_json_blocks,
             self._try_manual_json_construction,
+            self._try_semantic_parsing,  # New strategy
         ]
 
         for i, strategy in enumerate(strategies):
@@ -642,6 +680,76 @@ Provide analysis in JSON format with section_1, section_2, etc."""
                 continue
 
         return None
+
+    def _try_semantic_parsing(self, text: str) -> Optional[Dict[str, Any]]:
+        """Try to parse response semantically when JSON parsing fails"""
+        try:
+            # Look for structured content that might indicate analysis results
+            lines = text.split("\n")
+            result = {}
+
+            # Try to identify if this is a structured analysis response
+            if any(
+                keyword in text.lower()
+                for keyword in [
+                    "red_flag",
+                    "issue",
+                    "problem",
+                    "compliance",
+                    "suggestion",
+                ]
+            ):
+                # This looks like an analysis response, try to extract meaningful content
+                current_section = "analysis"
+                result[current_section] = {}
+
+                for line in lines:
+                    line = line.strip()
+                    if not line:
+                        continue
+
+                    # Look for key-value patterns
+                    if ":" in line and not line.startswith("#"):
+                        parts = line.split(":", 1)
+                        if len(parts) == 2:
+                            key = parts[0].strip().lower().replace(" ", "_")
+                            value = parts[1].strip()
+
+                            # Map common fields
+                            if any(
+                                term in key for term in ["red_flag", "issue", "problem"]
+                            ):
+                                result[current_section]["red_flag"] = value
+                            elif any(
+                                term in key
+                                for term in ["law", "citation", "regulation"]
+                            ):
+                                result[current_section]["law_citation"] = value
+                            elif any(
+                                term in key
+                                for term in ["suggestion", "recommendation", "advice"]
+                            ):
+                                result[current_section]["suggestion"] = value
+                            elif any(
+                                term in key
+                                for term in ["severity", "priority", "level"]
+                            ):
+                                result[current_section]["severity"] = value
+                            elif any(
+                                term in key
+                                for term in ["category", "type", "classification"]
+                            ):
+                                result[current_section]["category"] = value
+
+                # If we found meaningful content, return it
+                if result[current_section]:
+                    return result
+
+            return None
+
+        except Exception as e:
+            logger.debug(f"Semantic parsing failed: {e}")
+            return None
 
     def _try_direct_json_parse(self, text: str) -> Optional[Dict[str, Any]]:
         """Try direct JSON parsing"""
@@ -826,6 +934,16 @@ Provide analysis in JSON format with section_1, section_2, etc."""
         """Create fallback results for all sections in a batch"""
         fallback_results = []
 
+        # Only create fallback results if we have a meaningful error
+        if not error_message or "Response preprocessing failed" in error_message:
+            # For preprocessing failures, don't create fallback results for every section
+            # Instead, create one comprehensive error result
+            logger.warning(
+                "Preprocessing failed, creating single comprehensive error result"
+            )
+            return [self._create_comprehensive_error_result(error_message, batch)]
+
+        # For other types of errors, create individual fallback results
         for i, section in enumerate(batch):
             try:
                 # Add bounds checking to prevent index errors
@@ -866,6 +984,31 @@ Provide analysis in JSON format with section_1, section_2, etc."""
                 )
 
         return fallback_results
+
+    def _create_comprehensive_error_result(
+        self, error_message: str, batch: List[Section]
+    ) -> Dict[str, Any]:
+        """Create a single comprehensive error result when preprocessing fails"""
+        try:
+            # Create one comprehensive error result instead of multiple section-specific ones
+            return {
+                "red_flag": "Document analysis temporarily unavailable due to technical issues",
+                "law_citation": "ADGM Legal Framework - General Requirements",
+                "suggestion": "Please retry the analysis or contact support if the issue persists",
+                "severity": "Low",
+                "category": "technical",
+                "confidence": "Low",
+                "compliant_clause": "Retry analysis or contact support",
+                "section_index": 0,  # Place at the beginning of the document
+                "section_clause": "Document Analysis",
+                "section_text": f"Technical issue: {error_message[:200]}...",
+                "section_type": "technical",
+                "analysis_method": "comprehensive_fallback",
+                "is_comprehensive_error": True,  # Flag to identify this type of error
+            }
+        except Exception as e:
+            logger.warning(f"Error creating comprehensive error result: {e}")
+            return None
 
     def _create_single_fallback_result(
         self, section: Section, index: int, error_message: str

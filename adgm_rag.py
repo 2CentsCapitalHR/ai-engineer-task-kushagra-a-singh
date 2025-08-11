@@ -17,7 +17,7 @@ from error_handler import ErrorHandler, GracefulDegradation, InputValidator
 
 # Import the new modules
 from rate_limiter import get_api_client, get_rate_limiter
-from smart_batcher import BatchConfig, SmartBatcher
+from smart_batcher import BatchConfig, Section, SmartBatcher
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -347,7 +347,9 @@ async def enhanced_gemini_analysis(
             )
 
         # Check if we should use smart batching for multiple sections
-        if "--- SECTION" in prompt and prompt.count("--- SECTION") > 1:
+        if ("--- SECTION" in prompt and prompt.count("--- SECTION") > 1) or (
+            "Section 1 (" in prompt and "Section 2 (" in prompt
+        ):
             # This is a batched request, use specialized handling
             return await _handle_batched_analysis(prompt, rag_snippets, temperature)
 
@@ -380,35 +382,41 @@ async def _make_rate_limited_request(
                     ]
                 )
                 enhanced_prompt = f"""
-                You are an expert ADGM legal compliance analyst. Use the following official ADGM sources to analyze the document content.
+            You are an expert ADGM legal compliance analyst. Use the following official ADGM sources to analyze the document content.
 
-                OFFICIAL ADGM SOURCES:
-                {context}
+            OFFICIAL ADGM SOURCES:
+            {context}
 
-                DOCUMENT CONTENT TO ANALYZE:
-                {prompt}
+            DOCUMENT CONTENT TO ANALYZE:
+            {prompt}
 
-                ANALYSIS REQUIREMENTS:
-                1. Check jurisdiction compliance (must be ADGM, not UAE Federal/Dubai/Abu Dhabi courts)
-                2. Verify required clauses are present and properly worded
-                3. Ensure formatting meets ADGM standards
-                4. Confirm compliance with current ADGM regulations
-                5. Identify ambiguous or non-binding language
-                6. Check for outdated legal references
+            ANALYSIS REQUIREMENTS:
+            1. Check jurisdiction compliance (must be ADGM, not UAE Federal/Dubai/Abu Dhabi courts)
+            2. Verify required clauses are present and properly worded
+            3. Ensure formatting meets ADGM standards
+            4. Confirm compliance with current ADGM regulations
+            5. Identify ambiguous or non-binding language
+            6. Check for outdated legal references
 
-                Respond in this exact JSON format:
-                {{
-                    "red_flag": "Detailed description of compliance issue found, or null if compliant",
-                    "law_citation": "Exact ADGM regulation citation (e.g., 'ADGM Companies Regulations 2020, Article X')",
-                    "suggestion": "Specific compliant alternative wording or action required",
-                    "severity": "High/Medium/Low based on legal and business impact",
-                    "category": "jurisdiction/missing_clauses/formatting/compliance/ambiguity/outdated",
-                    "confidence": "High/Medium/Low based on analysis certainty",
-                    "compliant_clause": "Suggested replacement clause text if applicable"
-                }}
-                
-                Be precise with citations and reference the exact ADGM regulation articles.
-                """
+            CRITICAL: You MUST respond with ONLY valid JSON in this exact format. Do not include any text before or after the JSON.
+            
+            {{
+                "red_flag": "Detailed description of compliance issue found, or null if compliant",
+                "law_citation": "Exact ADGM regulation citation (e.g., 'ADGM Companies Regulations 2020, Article X')",
+                "suggestion": "Specific compliant alternative wording or action required",
+                "severity": "High/Medium/Low based on legal and business impact",
+                "category": "jurisdiction/missing_clauses/formatting/compliance/ambiguity/outdated",
+                "confidence": "High/Medium/Low based on analysis certainty",
+                "compliant_clause": "Suggested replacement clause text if applicable"
+            }}
+            
+            IMPORTANT:
+            - Return ONLY the JSON object, no additional text
+            - Ensure all quotes are properly escaped
+            - Use double quotes for all strings
+            - Do not include markdown formatting
+            - Be precise with citations and reference the exact ADGM regulation articles
+            """
             else:
                 enhanced_prompt = prompt
 
@@ -605,6 +613,14 @@ def _parse_batched_response(response_text: str) -> Dict[str, Any]:
 
         # For batched responses, return the parsed result as-is
         # The calling function will handle the individual section parsing
+        # If the parsed result is a list of section dicts, convert to keyed dict
+        if isinstance(parsed_result, list):
+            keyed = {}
+            for i, item in enumerate(parsed_result):
+                if isinstance(item, dict):
+                    keyed[f"section_{i+1}"] = item
+            parsed_result = keyed if keyed else parsed_result
+
         return {
             "batched_response": True,
             "parsed_content": parsed_result,
@@ -958,12 +974,12 @@ async def batch_analysis(
 
     # Initialize smart batcher
     batcher = SmartBatcher()
-    all_results = []
+    all_results: List[Dict[str, Any]] = []
 
     # Track progress and errors
     total_processed = 0
     total_errors = 0
-    error_summary = []
+    error_summary: List[Dict[str, Any]] = []
 
     try:
         for i, document in enumerate(documents):
@@ -1003,6 +1019,18 @@ async def batch_analysis(
                                     "category": "validation",
                                 }
                             )
+                    # Skip this document
+                    all_results.append(
+                        {
+                            "filename": document.get("filename", "Unknown"),
+                            "doc_type": document.get("doc_type", "unknown"),
+                            "total_sections": 0,
+                            "processed_sections": 0,
+                            "results": [],
+                            "processing_status": "failed",
+                            "error": "Validation failed",
+                        }
+                    )
                     continue
 
                 # Extract sections with robust error handling
@@ -1026,10 +1054,9 @@ async def batch_analysis(
                     continue
 
                 # Validate each section has required fields
-                valid_sections = []
+                valid_sections: List[Dict[str, Any]] = []
                 for j, section in enumerate(sections):
                     try:
-                        # Add bounds checking to prevent index errors
                         if j >= len(sections):
                             logger.warning(
                                 f"Section index {j} out of range for sections length {len(sections)}"
@@ -1144,7 +1171,7 @@ async def batch_analysis(
                     continue
 
                 # Process each batch
-                document_results = []
+                document_results: List[Dict[str, Any]] = []
                 for batch_idx, batch in enumerate(batches):
                     try:
                         # Enhanced bounds checking for batch
@@ -1220,17 +1247,15 @@ async def batch_analysis(
                             )
 
                             # Use graceful degradation for failed batches
-                            fallback_results = []
+                            fallback_results: List[Dict[str, Any]] = []
                             for section_idx, section in enumerate(batch):
                                 try:
-                                    # Add bounds checking for section access
                                     if section_idx >= len(batch):
                                         logger.warning(
                                             f"Section index {section_idx} out of range for batch length {len(batch)}"
                                         )
                                         break
 
-                                    # Validate section object before processing
                                     if not section or not hasattr(section, "text"):
                                         logger.warning(
                                             f"Invalid section object at index {section_idx}"
@@ -1306,174 +1331,97 @@ async def batch_analysis(
                             if batch_result.get("batched_response"):
                                 # This was a batched response, parse individual sections
                                 try:
-                                    # Prefer already parsed content when available
-                                    parsed_content = batch_result.get("parsed_content")
+                                    # Prefer already parsed content when available (dict expected)
+                                    content_for_parsing = batch_result.get(
+                                        "parsed_content"
+                                    )
 
-                                    # Validate batch structure before parsing
-                                    if not batch or len(batch) == 0:
-                                        logger.warning(
-                                            f"Batch {batch_idx+1} is empty, skipping parsing"
-                                        )
-                                        continue
-
-                                    # Wrap the parse_batch_response call in additional error handling
-                                    try:
-                                        # If parsed_content is available, pass it directly; otherwise pass raw_response
-                                        content_for_parsing = (
-                                            parsed_content
-                                            if parsed_content is not None
-                                            else batch_result.get("raw_response", "")
-                                        )
+                                    if isinstance(content_for_parsing, dict):
                                         parsed_results = batcher.parse_batch_response(
                                             content_for_parsing, batch
                                         )
+                                    else:
+                                        # Fallback to raw response string if needed
+                                        raw_resp = batch_result.get("raw_response", "")
+                                        parsed_results = batcher.parse_batch_response(
+                                            raw_resp, batch
+                                        )
 
-                                        # Validate parsed results structure
-                                        if parsed_results and isinstance(
-                                            parsed_results, list
-                                        ):
-                                            # Ensure we have results for each section
-                                            if len(parsed_results) == len(batch):
-                                                document_results.extend(parsed_results)
-                                                logger.info(
-                                                    f"Successfully parsed {len(parsed_results)} section results"
-                                                )
-                                            else:
-                                                logger.warning(
-                                                    f"Parsed results count ({len(parsed_results)}) doesn't match batch size ({len(batch)})"
-                                                )
-                                                # Use fallback for missing results
-                                                for i in range(len(batch)):
-                                                    if i < len(parsed_results):
-                                                        document_results.append(
-                                                            parsed_results[i]
-                                                        )
-                                                    else:
-                                                        # Create fallback result for missing section
-                                                        fallback_result = {
-                                                            "red_flag": "Section analysis result missing",
-                                                            "law_citation": "ADGM Legal Framework - General Requirements",
-                                                            "suggestion": "Manual review required for missing analysis",
-                                                            "severity": "Medium",
-                                                            "category": "compliance",
-                                                            "confidence": "Low",
-                                                            "compliant_clause": "Consult ADGM legal advisor",
-                                                            "section_index": getattr(
-                                                                batch[i], "index", i
-                                                            ),
-                                                            "section_clause": getattr(
-                                                                batch[i],
-                                                                "clause",
-                                                                f"Section_{i+1}",
-                                                            ),
-                                                            "section_text": (
-                                                                getattr(
-                                                                    batch[i], "text", ""
-                                                                )[:200]
-                                                                + "..."
-                                                                if len(
-                                                                    getattr(
-                                                                        batch[i],
-                                                                        "text",
-                                                                        "",
-                                                                    )
-                                                                )
-                                                                > 200
-                                                                else getattr(
-                                                                    batch[i], "text", ""
-                                                                )
-                                                            ),
-                                                            "section_type": getattr(
-                                                                batch[i],
-                                                                "section_type",
-                                                                "content",
-                                                            ),
-                                                            "analysis_method": "fallback_missing_result",
-                                                        }
-                                                        document_results.append(
-                                                            fallback_result
-                                                        )
+                                    # Validate parsed results structure
+                                    if parsed_results and isinstance(
+                                        parsed_results, list
+                                    ):
+                                        if len(parsed_results) == len(batch):
+                                            document_results.extend(parsed_results)
+                                            logger.info(
+                                                f"Successfully parsed {len(parsed_results)} section results"
+                                            )
                                         else:
                                             logger.warning(
-                                                f"Invalid parsed results from batch: {type(parsed_results)}"
+                                                f"Parsed results count ({len(parsed_results)}) doesn't match batch size ({len(batch)})"
                                             )
-                                            # Fallback to individual section processing
-                                            for section in batch:
-                                                try:
-                                                    section_result = {
-                                                        "red_flag": "Batch parsing returned invalid results",
+                                            # Use fallback for missing results
+                                            for idx in range(len(batch)):
+                                                if idx < len(parsed_results):
+                                                    document_results.append(
+                                                        parsed_results[idx]
+                                                    )
+                                                else:
+                                                    fallback_result = {
+                                                        "red_flag": "Section analysis result missing",
                                                         "law_citation": "ADGM Legal Framework - General Requirements",
-                                                        "suggestion": "Manual legal review required due to parsing error",
+                                                        "suggestion": "Manual review required for missing analysis",
                                                         "severity": "Medium",
                                                         "category": "compliance",
                                                         "confidence": "Low",
                                                         "compliant_clause": "Consult ADGM legal advisor",
                                                         "section_index": getattr(
-                                                            section, "index", 0
+                                                            batch[idx], "index", idx
                                                         ),
                                                         "section_clause": getattr(
-                                                            section, "clause", "Unknown"
+                                                            batch[idx],
+                                                            "clause",
+                                                            f"Section_{idx+1}",
                                                         ),
                                                         "section_text": (
-                                                            (
-                                                                getattr(
-                                                                    section, "text", ""
-                                                                )[:200]
-                                                                + "..."
-                                                            )
+                                                            getattr(
+                                                                batch[idx], "text", ""
+                                                            )[:200]
+                                                            + "..."
                                                             if len(
                                                                 getattr(
-                                                                    section, "text", ""
+                                                                    batch[idx],
+                                                                    "text",
+                                                                    "",
                                                                 )
                                                             )
                                                             > 200
                                                             else getattr(
-                                                                section, "text", ""
+                                                                batch[idx], "text", ""
                                                             )
                                                         ),
                                                         "section_type": getattr(
-                                                            section,
+                                                            batch[idx],
                                                             "section_type",
                                                             "content",
                                                         ),
-                                                        "analysis_method": "batch_parse_fallback",
+                                                        "analysis_method": "fallback_missing_result",
                                                     }
                                                     document_results.append(
-                                                        section_result
+                                                        fallback_result
                                                     )
-                                                except Exception as section_error:
-                                                    logger.warning(
-                                                        f"Error creating fallback section result: {section_error}"
-                                                    )
-                                                    continue
-                                    except Exception as parse_batch_error:
-                                        logger.error(
-                                            f"Critical error in parse_batch_response: {parse_batch_error}"
+                                    else:
+                                        logger.warning(
+                                            f"Invalid parsed results from batch: {type(parsed_results)}"
                                         )
-                                        # Use comprehensive fallback for critical parsing errors
-                                        for section_idx, section in enumerate(batch):
+                                        # Fallback to individual section processing
+                                        for section in batch:
                                             try:
-                                                # Add bounds checking for section access
-                                                if section_idx >= len(batch):
-                                                    logger.warning(
-                                                        f"Section index {section_idx} out of range for batch length {len(batch)}"
-                                                    )
-                                                    break
-
-                                                # Validate section object
-                                                if not section or not hasattr(
-                                                    section, "text"
-                                                ):
-                                                    logger.warning(
-                                                        f"Invalid section object at index {section_idx}"
-                                                    )
-                                                    continue
-
                                                 section_result = {
-                                                    "red_flag": f"Critical batch parsing error: {str(parse_batch_error)}",
+                                                    "red_flag": "Batch parsing returned invalid results",
                                                     "law_citation": "ADGM Legal Framework - General Requirements",
-                                                    "suggestion": "Manual legal review required due to critical parsing error",
-                                                    "severity": "High",
+                                                    "suggestion": "Manual legal review required due to parsing error",
+                                                    "severity": "Medium",
                                                     "category": "compliance",
                                                     "confidence": "Low",
                                                     "compliant_clause": "Consult ADGM legal advisor",
@@ -1503,33 +1451,40 @@ async def batch_analysis(
                                                         "section_type",
                                                         "content",
                                                     ),
-                                                    "analysis_method": "critical_batch_parse_error",
+                                                    "analysis_method": "batch_parse_fallback",
                                                 }
                                                 document_results.append(section_result)
                                             except Exception as section_error:
                                                 logger.warning(
-                                                    f"Error creating critical fallback section result: {section_error}"
+                                                    f"Error creating fallback section result: {section_error}"
                                                 )
                                                 continue
-                                except Exception as parse_error:
+                                except Exception as parse_batch_error:
                                     logger.error(
-                                        f"Error parsing batch response: {parse_error}"
+                                        f"Critical error in parse_batch_response: {parse_batch_error}"
                                     )
-                                    # Use fallback for parsing errors
+                                    # Use comprehensive fallback for critical parsing errors
                                     for section_idx, section in enumerate(batch):
                                         try:
-                                            # Add bounds checking for section access
                                             if section_idx >= len(batch):
                                                 logger.warning(
                                                     f"Section index {section_idx} out of range for batch length {len(batch)}"
                                                 )
                                                 break
 
+                                            if not section or not hasattr(
+                                                section, "text"
+                                            ):
+                                                logger.warning(
+                                                    f"Invalid section object at index {section_idx}"
+                                                )
+                                                continue
+
                                             section_result = {
-                                                "red_flag": f"Response parsing error: {str(parse_error)}",
+                                                "red_flag": f"Critical batch parsing error: {str(parse_batch_error)}",
                                                 "law_citation": "ADGM Legal Framework - General Requirements",
-                                                "suggestion": "Manual legal review required due to parsing error",
-                                                "severity": "Medium",
+                                                "suggestion": "Manual legal review required due to critical parsing error",
+                                                "severity": "High",
                                                 "category": "compliance",
                                                 "confidence": "Low",
                                                 "compliant_clause": "Consult ADGM legal advisor",
@@ -1553,19 +1508,18 @@ async def batch_analysis(
                                                 "section_type": getattr(
                                                     section, "section_type", "content"
                                                 ),
-                                                "analysis_method": "api_parse_error",
+                                                "analysis_method": "critical_batch_parse_error",
                                             }
                                             document_results.append(section_result)
                                         except Exception as section_error:
                                             logger.warning(
-                                                f"Error creating section result for parse error: {section_error}"
+                                                f"Error creating critical fallback section result: {section_error}"
                                             )
                                             continue
                             else:
                                 # Single section response, convert to batch format
                                 for section_idx, section in enumerate(batch):
                                     try:
-                                        # Add bounds checking for section access
                                         if section_idx >= len(batch):
                                             logger.warning(
                                                 f"Section index {section_idx} out of range for batch length {len(batch)}"
@@ -1630,7 +1584,6 @@ async def batch_analysis(
                             )
                             for section_idx, section in enumerate(batch):
                                 try:
-                                    # Add bounds checking for section access
                                     if section_idx >= len(batch):
                                         logger.warning(
                                             f"Section index {section_idx} out of range for batch length {len(batch)}"
@@ -1682,14 +1635,12 @@ async def batch_analysis(
                             # Create minimal error result
                             for section_idx, section in enumerate(batch):
                                 try:
-                                    # Add bounds checking for section access
                                     if section_idx >= len(batch):
                                         logger.warning(
                                             f"Section index {section_idx} out of range for batch length {len(batch)}"
                                         )
                                         break
 
-                                    # Validate section object
                                     if not section or not hasattr(section, "text"):
                                         logger.warning(
                                             f"Invalid section object at index {section_idx}"

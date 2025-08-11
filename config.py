@@ -141,6 +141,11 @@ ANALYSIS_CONFIG = {
     "enable_structure_validation": True,
     "enable_citation_generation": True,
     "enable_suggestion_generation": True,
+    "max_retry_attempts": 3,
+    "retry_delay_seconds": 2,
+    "enable_comprehensive_fallback": True,
+    "min_response_length": 50,
+    "json_parsing_timeout": 30,
 }
 
 # Export Configuration

@@ -745,14 +745,44 @@ def insert_comments(
         ).font.size = Pt(10)
         header_para.paragraph_format.space_after = Pt(6)
 
+        # Filter out comprehensive error results and handle them separately
+        comprehensive_errors = [
+            f for f in flagged_sections if f.get("is_comprehensive_error")
+        ]
+        regular_issues = [
+            f for f in flagged_sections if not f.get("is_comprehensive_error")
+        ]
+
         # Insert summary of issues
-        if flagged_sections:
+        if regular_issues or comprehensive_errors:
             summary_para = doc.paragraphs[0].insert_paragraph_before()
-            high_count = sum(1 for f in flagged_sections if f.get("severity") == "High")
+
+            # Handle comprehensive errors
+            if comprehensive_errors:
+                error_para = summary_para.add_run("⚠️ TECHNICAL NOTICE: ")
+                error_para.font.bold = True
+                error_para.font.color.rgb = RGBColor(255, 0, 0)  # Red
+                error_para.font.size = Pt(12)
+
+                # Show only one consolidated message
+                first_error = comprehensive_errors[0]
+                summary_para.add_run(
+                    f"{first_error.get('red_flag', 'Technical issue occurred')} "
+                )
+                summary_para.add_run(
+                    f"({first_error.get('suggestion', 'Please retry')})"
+                )
+                summary_para.add_run().add_break()
+
+                summary_para.paragraph_format.space_after = Pt(6)
+                return doc  # Don't proceed with regular analysis if there are comprehensive errors
+
+            # Regular issues summary
+            high_count = sum(1 for f in regular_issues if f.get("severity") == "High")
             medium_count = sum(
-                1 for f in flagged_sections if f.get("severity") == "Medium"
+                1 for f in regular_issues if f.get("severity") == "Medium"
             )
-            low_count = sum(1 for f in flagged_sections if f.get("severity") == "Low")
+            low_count = sum(1 for f in regular_issues if f.get("severity") == "Low")
 
             # Summary heading
             summary_heading = summary_para.add_run("AI SUMMARY")
@@ -763,14 +793,14 @@ def insert_comments(
 
             # Counts line
             counts_run = summary_para.add_run(
-                f"Issues found: {len(flagged_sections)}  (High: {high_count}, Medium: {medium_count}, Low: {low_count})"
+                f"Issues found: {len(regular_issues)}  (High: {high_count}, Medium: {medium_count}, Low: {low_count})"
             )
             counts_run.font.size = Pt(10)
             summary_para.add_run().add_break()
 
             # Category breakdown
             category_counts: Dict[str, int] = {}
-            for f in flagged_sections:
+            for f in regular_issues:
                 cat = f.get("category", "other")
                 category_counts[cat] = category_counts.get(cat, 0) + 1
             if category_counts:
@@ -782,7 +812,7 @@ def insert_comments(
 
             # Helpful resources (dynamic by categories)
             # Use dynamic link generation based on actual issues found
-            all_links = generate_dynamic_helpful_links(flagged_sections, doc_type)
+            all_links = generate_dynamic_helpful_links(regular_issues, doc_type)
 
             if all_links:
                 summary_para.add_run("Helpful resources:")
@@ -798,8 +828,8 @@ def insert_comments(
 
             summary_para.paragraph_format.space_after = Pt(6)
 
-        # Insert comments at relevant paragraphs
-        for flag in flagged_sections:
+        # Insert comments at relevant paragraphs for regular issues only
+        for flag in regular_issues:
             idx = flag.get("section_index", flag.get("index", 0))
             if idx < len(doc.paragraphs):
                 add_comment_to_paragraph(
